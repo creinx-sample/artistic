@@ -58,7 +58,7 @@ export default function WorkCard({ title, description, type, language, image, au
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
+          className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent mix-blend-multiply" />
         

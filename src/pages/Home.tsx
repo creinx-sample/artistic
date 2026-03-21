@@ -96,9 +96,10 @@ export default function Home() {
               </Link>
               <Link
                 to="/contact"
-                className="px-8 py-4 border border-border rounded-full font-medium hover:bg-card hover:border-primary/50 transition-all"
+                className="group px-8 py-4 border border-border rounded-full font-medium hover:bg-card hover:border-primary/50 transition-all flex items-center gap-2"
               >
                 Get In Touch
+                <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
               </Link>
             </motion.div>
           </div>
@@ -413,9 +414,10 @@ export default function Home() {
             >
               <Link
                 to="/contact"
-                className="px-10 py-4 bg-gradient-to-r from-primary to-secondary rounded-full font-medium text-white hover:shadow-xl hover:shadow-primary/30 transition-all"
+                className="group px-10 py-4 bg-gradient-to-r from-primary to-secondary rounded-full font-medium text-white hover:shadow-xl hover:shadow-primary/30 transition-all flex items-center gap-2"
               >
                 Start a Project
+                <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
               </Link>
               <a
                 href="mailto:sujavagishwari.voiceartist@gmail.com"

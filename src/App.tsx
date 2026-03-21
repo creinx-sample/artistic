@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import AnimatedBackground from './components/AnimatedBackground';
+import InitialLoader from './components/InitialLoader';
 import Home from './pages/Home';
 import About from './pages/About';
 import Portfolio from './pages/Portfolio';
@@ -133,17 +134,32 @@ function AnimatedRoutes() {
 }
 
 function App() {
+  const [isAppLoading, setIsAppLoading] = useState(true);
+
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-background text-foreground relative">
-        <ScrollToTop />
-        <div className="noise-overlay" />
-        <AnimatedBackground />
-        <Navbar />
-        <main className="relative" style={{ zIndex: 1 }}>
-          <AnimatedRoutes />
-        </main>
-        <Footer />
+      <div className="min-h-screen bg-background text-foreground relative selection:bg-primary/20">
+        <AnimatePresence mode="wait">
+          {isAppLoading ? (
+            <InitialLoader key="loader" onComplete={() => setIsAppLoading(false)} />
+          ) : (
+            <motion.div
+              key="main-app"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <ScrollToTop />
+              <div className="noise-overlay" />
+              <AnimatedBackground />
+              <Navbar />
+              <main className="relative" style={{ zIndex: 1 }}>
+                <AnimatedRoutes />
+              </main>
+              <Footer />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </BrowserRouter>
   );

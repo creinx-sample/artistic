@@ -1,53 +1,32 @@
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 
-// Generates dynamic sine wave paths for a "live audio" feeling
-const generateWavePath = (phase: number, amplitude: number, frequency: number, width: number, offsetY: number) => {
-  let path = `M 0 ${offsetY}`;
-  for (let x = 0; x <= width; x += 10) {
-    const y = offsetY + Math.sin(x * frequency + phase) * amplitude;
-    path += ` L ${x} ${y}`;
-  }
-  return path;
-};
 
-function AnimatedWave({ color, duration, offset, amplitude, frequency }: { color: string, duration: number, offset: number, amplitude: number, frequency: number }) {
-  const [phase, setPhase] = useState(0);
-
-  useEffect(() => {
-    let animationFrameId: number;
-    let currentPhase = 0;
-    
-    const animate = () => {
-      currentPhase += 0.05 * (10 / duration);
-      setPhase(currentPhase);
-      animationFrameId = requestAnimationFrame(animate);
-    };
-    
-    animate();
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [duration]);
-
+function SonicRings() {
   return (
-    <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
-      <motion.path
-        d={generateWavePath(phase, amplitude, frequency, typeof window !== 'undefined' ? window.innerWidth : 1000, offset)}
-        fill="none"
-        stroke={color}
-        strokeWidth="2"
-        style={{
-          filter: 'blur(4px)',
-          opacity: 0.6,
-        }}
-      />
-      <motion.path
-        d={generateWavePath(phase, amplitude, frequency, typeof window !== 'undefined' ? window.innerWidth : 1000, offset)}
-        fill="none"
-        stroke={color}
-        strokeWidth="1"
-        style={{ opacity: 0.3 }}
-      />
-    </svg>
+    <div className="absolute top-1/2 left-1/2 -translate-x-[20%] -translate-y-1/2 pointer-events-none opacity-30 mix-blend-screen">
+      {[1, 2, 3, 4, 5].map((i) => (
+        <motion.div
+          key={i}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+          style={{
+            width: `${i * 300}px`,
+            height: `${i * 300}px`,
+            border: `1px solid ${i % 2 === 0 ? 'rgba(255, 107, 53, 0.2)' : 'rgba(124, 58, 237, 0.2)'}`,
+            boxShadow: `0 0 40px ${i % 2 === 0 ? 'rgba(255, 107, 53, 0.05)' : 'rgba(124, 58, 237, 0.05)'} inset`,
+          }}
+          animate={{
+            scale: [1, 1.05, 1],
+            opacity: [0.5, 0.8, 0.5],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: 20 + i * 5,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      ))}
+    </div>
   );
 }
 
@@ -113,21 +92,6 @@ function FloatingMusicNotes() {
 }
 
 export default function LiveHeroBackground() {
-  const [windowWidth, setWindowWidth] = useState(1000);
-  const [windowHeight, setWindowHeight] = useState(800);
-
-  useEffect(() => {
-    setWindowWidth(window.innerWidth);
-    setWindowHeight(window.innerHeight);
-    
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-      setWindowHeight(window.innerHeight);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   return (
     <div className="absolute inset-0 z-0 overflow-hidden mix-blend-screen pointer-events-none">
       {/* Live Equalizer at the bottom of the viewport */}
@@ -136,14 +100,8 @@ export default function LiveHeroBackground() {
       {/* Floating Notes */}
       <FloatingMusicNotes />
 
-      {/* Animated Sound Waves crossing the screen */}
-      {windowWidth && (
-        <>
-          <AnimatedWave color="rgb(139, 92, 246)" duration={18} offset={windowHeight * 0.4} amplitude={80} frequency={0.003} />
-          <AnimatedWave color="rgb(217, 70, 239)" duration={24} offset={windowHeight * 0.6} amplitude={120} frequency={0.002} />
-          <AnimatedWave color="rgb(59, 130, 246)" duration={15} offset={windowHeight * 0.5} amplitude={60} frequency={0.004} />
-        </>
-      )}
+      {/* Creative background replacing the spectral waves */}
+      <SonicRings />
     </div>
   );
 }

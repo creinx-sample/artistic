@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Filter, Grid, List, Mic2, Film, Headphones } from 'lucide-react';
+import { Filter, Mic2, Film, Headphones } from 'lucide-react';
+
 import WorkCard from '../components/WorkCard';
 import { works, type Work } from '../data/works';
 
 export default function Portfolio() {
   const [filter, setFilter] = useState<'all' | 'dubbing' | 'podcast'>('all');
   const [langFilter, setLangFilter] = useState<'all' | Work['language']>('all');
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   const filteredWorks = works.filter((work) => {
     const typeMatch = filter === 'all' || work.type === filter;
@@ -17,8 +17,8 @@ export default function Portfolio() {
 
   const languages: Array<{ value: 'all' | Work['language']; label: string; color: string }> = [
     { value: 'all', label: 'All Languages', color: 'bg-muted' },
-    { value: 'Hindi', label: 'Hindi', color: 'bg-hindi' },
     { value: 'English', label: 'English', color: 'bg-english' },
+    { value: 'Hindi', label: 'Hindi', color: 'bg-hindi' },
     { value: 'Tamil', label: 'Tamil', color: 'bg-tamil' },
     { value: 'Malayalam', label: 'Malayalam', color: 'bg-malayalam' },
   ];
@@ -108,25 +108,7 @@ export default function Portfolio() {
               ))}
             </div>
 
-            {/* View Toggle */}
-            <div className="hidden md:flex items-center gap-1 rounded-lg bg-card border border-border p-1">
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-md transition-colors ${
-                  viewMode === 'grid' ? 'bg-primary text-white' : 'text-muted hover:text-foreground'
-                }`}
-              >
-                <Grid className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setViewMode('list')}
-                className={`p-2 rounded-md transition-colors ${
-                  viewMode === 'list' ? 'bg-primary text-white' : 'text-muted hover:text-foreground'
-                }`}
-              >
-                <List className="w-4 h-4" />
-              </button>
-            </div>
+
           </div>
         </div>
       </section>
@@ -142,7 +124,7 @@ export default function Portfolio() {
 
           <motion.div
             layout
-            className={viewMode === 'grid' ? 'grid md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-4'}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             <AnimatePresence mode="popLayout">
               {filteredWorks.map((work) => (

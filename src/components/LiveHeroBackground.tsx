@@ -11,8 +11,8 @@ function SonicRings() {
           style={{
             width: `${i * 300}px`,
             height: `${i * 300}px`,
-            border: `1px solid ${i % 2 === 0 ? 'rgba(255, 107, 53, 0.2)' : 'rgba(124, 58, 237, 0.2)'}`,
-            boxShadow: `0 0 40px ${i % 2 === 0 ? 'rgba(255, 107, 53, 0.05)' : 'rgba(124, 58, 237, 0.05)'} inset`,
+            border: `1px solid ${i % 2 === 0 ? 'rgba(0, 168, 197, 0.2)' : 'rgba(162, 45, 113, 0.2)'}`,
+            boxShadow: `0 0 40px ${i % 2 === 0 ? 'rgba(0, 168, 197, 0.05)' : 'rgba(162, 45, 113, 0.05)'} inset`,
           }}
           animate={{
             scale: [1, 1.05, 1],

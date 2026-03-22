@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, Phone, MapPin, Clock, CheckCircle, Mic2, Headphones, Film, MessageSquare } from 'lucide-react';
+import { Send, Mail, Phone, MapPin, Clock, CheckCircle, Mic2, Headphones, Film, MessageSquare, Palette } from 'lucide-react';
 import AudioWave from '../components/AudioWave';
 
 export default function Contact() {
@@ -23,6 +23,7 @@ export default function Contact() {
     { value: 'dubbing', label: 'Film/TV Dubbing', icon: Film },
     { value: 'podcast', label: 'Podcast Recording', icon: Headphones },
     { value: 'voiceover', label: 'Voice Over', icon: Mic2 },
+    { value: 'boutique', label: 'Boutique / Design', icon: Palette },
     { value: 'other', label: 'Other', icon: MessageSquare },
   ];
 
@@ -38,8 +39,8 @@ export default function Contact() {
       {/* Hero */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-primary/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/3 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-3xl" />
+          <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-3xl opacity-50" />
+          <div className="absolute bottom-0 right-1/3 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-3xl opacity-50" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6">
@@ -98,7 +99,7 @@ export default function Contact() {
                     className="flex items-start gap-4 p-4 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all group"
                   >
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary group-hover:to-secondary transition-all">
-                      <item.icon className="w-5 h-5 text-primary group-hover:text-white transition-colors" />
+                      <item.icon className="w-5 h-5 text-primary group-hover:text-background transition-colors" />
                     </div>
                     <div>
                       <p className="text-sm text-muted">{item.label}</p>
@@ -137,10 +138,10 @@ export default function Contact() {
               className="lg:col-span-3"
             >
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl blur-xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-3xl blur-2xl" />
                 <form
                   onSubmit={handleSubmit}
-                  className="relative bg-card rounded-3xl border border-border p-8 md:p-10"
+                  className="relative bg-white rounded-3xl border border-border p-8 md:p-10 shadow-xl"
                 >
                   {submitted ? (
                     <motion.div
@@ -149,7 +150,7 @@ export default function Contact() {
                       className="text-center py-12"
                     >
                       <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                        <CheckCircle className="w-10 h-10 text-white" />
+                        <CheckCircle className="w-10 h-10 text-background" />
                       </div>
                       <h3 className="font-display text-2xl font-bold mb-2">Message Sent!</h3>
                       <p className="text-muted">I'll get back to you within 24 hours.</p>
@@ -166,7 +167,7 @@ export default function Contact() {
                             required
                             value={formState.name}
                             onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                            className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:outline-none transition-colors"
+                            className="w-full px-4 py-3 rounded-xl bg-background border border-primary focus:bg-card focus:outline-none transition-colors placeholder:text-primary/50"
                             placeholder="John Doe"
                           />
                         </div>
@@ -177,7 +178,7 @@ export default function Contact() {
                             required
                             value={formState.email}
                             onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                            className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:outline-none transition-colors"
+                            className="w-full px-4 py-3 rounded-xl bg-background border-2 border-secondary focus:bg-card focus:outline-none transition-colors placeholder:text-secondary/60"
                             placeholder="john@example.com"
                           />
                         </div>
@@ -193,8 +194,8 @@ export default function Contact() {
                               onClick={() => setFormState({ ...formState, service: service.value })}
                               className={`p-4 rounded-xl border text-center transition-all ${
                                 formState.service === service.value
-                                  ? 'bg-gradient-to-br from-primary to-secondary border-transparent text-white'
-                                  : 'bg-background border-border hover:border-primary/50'
+                                  ? 'bg-gradient-to-br from-primary to-secondary border-transparent text-background'
+                                  : 'bg-background border-primary/20 hover:border-primary/50'
                               }`}
                             >
                               <service.icon className="w-5 h-5 mx-auto mb-2" />
@@ -236,7 +237,7 @@ export default function Contact() {
                         type="submit"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="w-full py-4 bg-gradient-to-r from-primary to-secondary rounded-xl font-medium text-white flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-primary/30 transition-all"
+                        className="vibrant-btn w-full flex items-center justify-center gap-2"
                       >
                         <Send className="w-5 h-5" />
                         Send Message

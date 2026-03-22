@@ -30,8 +30,8 @@ export default function LanguagePage({ language, color, gradient, description, i
       {/* Hero */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0">
-          <div className={`absolute top-0 left-1/4 w-[600px] h-[600px] ${color}/30 rounded-full blur-3xl`} />
-          <div className={`absolute bottom-0 right-1/4 w-[600px] h-[600px] ${color}/20 rounded-full blur-3xl`} />
+          <div className={`absolute top-0 left-1/4 w-[600px] h-[600px] ${color}/10 rounded-full blur-3xl`} />
+          <div className={`absolute bottom-0 right-1/4 w-[600px] h-[600px] ${color}/5 rounded-full blur-3xl`} />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6">
@@ -129,13 +129,13 @@ export default function LanguagePage({ language, color, gradient, description, i
                         className="w-full h-32 object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent flex items-end p-3">
-                        <p className="text-xs font-medium truncate">{work.title}</p>
+                        <p className="text-xs font-semibold text-secondary truncate">{work.title}</p>
                       </div>
                       <motion.div
                         whileHover={{ scale: 1.1 }}
-                        className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="absolute inset-0 flex items-center justify-center bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity"
                       >
-                        <Play className="w-8 h-8 text-white" fill="white" />
+                        <Play className="w-8 h-8 text-primary" fill="currentColor" />
                       </motion.div>
                     </motion.div>
                   ))}

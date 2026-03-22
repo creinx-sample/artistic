@@ -15,11 +15,10 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-card border-t border-border overflow-hidden">
+    <footer className="relative bg-slate-50 border-t border-border overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary rounded-full blur-3xl" />
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute inset-0 bg-primary/10 pointer-events-none" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 py-16">
@@ -27,12 +26,12 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/20">
                 <Mic2 className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="font-display text-xl font-bold">Suja Sambandam</h3>
-                <p className="text-xs text-muted">Voice Artist</p>
+                <h3 className="font-display text-xl font-bold text-foreground">Suja Sambandam</h3>
+                <p className="text-xs text-primary font-semibold">Voice Artist</p>
               </div>
             </Link>
             <p className="text-muted text-sm leading-relaxed mb-6">
@@ -121,16 +120,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted">
+        <div className="mt-16 pt-8 border-t border-primary flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-primary/80">
             © {new Date().getFullYear()} Suja Sambandam. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link to="/contact" className="text-sm text-muted hover:text-primary transition-colors">
+            <Link to="/contact" className="text-sm font-medium text-primary hover:scale-105 transition-transform">
               Hire Me
             </Link>
-            <span className="text-border">|</span>
-            <p className="text-sm text-muted">Crafted with passion for voice</p>
+            <span className="text-primary opacity-30">|</span>
+            <p className="text-sm text-primary/80">Crafted with passion for voice</p>
           </div>
         </div>
       </div>

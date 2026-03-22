@@ -25,7 +25,7 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'bg-background/90 backdrop-blur-xl border-b border-border' : 'bg-transparent'
+        scrolled ? 'bg-background border-b-4 border-primary shadow-lg shadow-primary/10' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
@@ -39,8 +39,8 @@ export default function Navbar() {
               <Mic2 className="w-6 h-6 text-white" />
             </motion.div>
             <div>
-              <h1 className="font-display text-xl font-bold">Suja Sambandam</h1>
-              <p className="text-xs text-muted flex items-center gap-1">
+              <h1 className="font-display text-xl font-bold text-foreground">Suja Sambandam</h1>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-primary flex items-center gap-1 mt-1 font-semibold">
                 <Headphones className="w-3 h-3" /> Voice Artist
               </p>
             </div>
@@ -57,8 +57,8 @@ export default function Navbar() {
                 <motion.span
                   whileHover={{ y: -1 }}
                   transition={{ duration: 0.15 }}
-                  className={`text-sm font-medium transition-colors block ${
-                    location.pathname === link.path ? 'text-primary' : 'text-foreground/70 hover:text-foreground'
+                  className={`font-mono text-xs tracking-widest uppercase transition-colors block ${
+                    location.pathname === link.path ? 'text-primary text-glow' : 'text-foreground/70 hover:text-primary'
                   }`}
                 >
                   {link.name}
@@ -83,9 +83,9 @@ export default function Navbar() {
             ))}
             <motion.a
               href="/contact"
-              whileHover={{ scale: 1.05, boxShadow: '0 10px 30px -5px rgba(139,92,246,0.4)' }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.96 }}
-              className="px-6 py-2.5 bg-gradient-to-r from-primary to-secondary rounded-full text-sm font-medium text-white transition-all inline-block"
+              className="vibrant-btn px-6 py-2 text-sm"
             >
               Contact Me
             </motion.a>
@@ -108,7 +108,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-card border-t border-border"
+            className="lg:hidden bg-white border-t border-border shadow-xl"
           >
             <div className="px-6 py-4 space-y-3">
               {navLinks.map((link, i) => (
@@ -132,7 +132,7 @@ export default function Navbar() {
               <Link
                 to="/contact"
                 onClick={() => setIsOpen(false)}
-                className="block w-full text-center py-3 bg-gradient-to-r from-primary to-secondary rounded-full text-white font-medium mt-4"
+                className="block w-full text-center py-3 bg-gradient-to-r from-primary to-secondary text-white font-display tracking-wide uppercase rounded-xl"
               >
                 Contact Me
               </Link>

@@ -1,151 +1,104 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0a0a0f;
-  --color-foreground: #f5f5f7;
-  --color-primary: #ff6b35;
-  --color-primary-light: #ff8c5a;
-  --color-secondary: #7c3aed;
-  --color-accent: #06b6d4;
-  --color-muted: #6b7280;
-  --color-card: #16161d;
-  --color-card-hover: #1e1e28;
-  --color-border: #2a2a35;
+  --color-background: #7fa9b0; /* Blue Sage */
+  --color-foreground: #4a148c; /* Deep Violet / Purple */
+  --color-primary: #4a148c;
+  --color-secondary: #7fa9b0;
+  --color-accent: #fdfaf3;      /* Creamy accent for highlights */
+  --color-card: #6d969d;       /* Deeper Blue Sage for cards */
+  --color-card-hover: #5d848b;
+  --color-border: #4a148c;     /* Violet Border */
+  --color-muted: #4a148c;      /* Violet for muted text */
   
-  --color-hindi: #ff6b35;
-  --color-english: #3b82f6;
-  --color-tamil: #10b981;
-  --color-malayalam: #f59e0b;
+  --color-hindi: #4a148c; 
+  --color-english: #fdfaf3;
+  --color-tamil: #4a148c;
+  --color-malayalam: #fdfaf3;
   
-  --font-display: 'Playfair Display', serif;
-  --font-body: 'Outfit', sans-serif;
+  --font-display: 'Oswald', sans-serif; 
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --animate-gradient: gradient-animation 8s ease infinite;
+
+  @keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 }
 
-@font-face {
-  font-family: 'Playfair Display';
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/playfairdisplay/v37/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtM.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Outfit';
-  font-style: normal;
-  font-weight: 300 700;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4TC1C4G-EiAou6Y.woff2') format('woff2');
-}
-
-html {
-  scroll-behavior: smooth;
+* {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%234a148c'><circle cx='12' cy='12' r='4' stroke='%23fdfaf3' stroke-width='1'/></svg>") 12 12, auto;
 }
 
 body {
-  font-family: var(--font-body);
   background-color: var(--color-background);
   color: var(--color-foreground);
-  overflow-x: hidden;
+  font-family: var(--font-body);
+  line-height: 1.6;
 }
 
 .font-display {
   font-family: var(--font-display);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-accent) 100%);
+  background-image: linear-gradient(to right, var(--color-primary), #7c43bd, var(--color-primary));
+  background-size: 200% auto;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
+  animation: var(--animate-gradient);
 }
 
-.glow-primary {
-  box-shadow: 0 0 40px rgba(255, 107, 53, 0.3);
+.glass-nav {
+  background: rgba(127, 169, 176, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 3px solid var(--color-primary);
 }
 
-.glow-secondary {
-  box-shadow: 0 0 40px rgba(124, 58, 237, 0.3);
+.vibrant-btn {
+  @apply px-8 py-3 bg-primary text-background font-display tracking-widest transition-all hover:bg-primary/90 shadow-lg active:scale-[0.98] border-2 border-primary;
 }
 
-.audio-wave {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  height: 40px;
+.secondary-btn {
+  @apply px-8 py-3 bg-transparent text-primary border-2 border-primary font-display tracking-widest transition-all hover:bg-primary hover:text-background active:scale-[0.98];
 }
 
-.audio-wave span {
-  width: 4px;
-  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
-  border-radius: 2px;
-  animation: wave 1s ease-in-out infinite;
+/* Global Overrides for Sage & Violet Mapping */
+section, div, footer, nav {
+  border-color: rgba(74, 20, 140, 0.3) !important;
 }
 
-.audio-wave span:nth-child(1) { animation-delay: 0s; }
-.audio-wave span:nth-child(2) { animation-delay: 0.1s; }
-.audio-wave span:nth-child(3) { animation-delay: 0.2s; }
-.audio-wave span:nth-child(4) { animation-delay: 0.3s; }
-.audio-wave span:nth-child(5) { animation-delay: 0.4s; }
-
-@keyframes wave {
-  0%, 100% { height: 10px; }
-  50% { height: 35px; }
+.bg-white, .bg-slate-50, .bg-slate-100, .bg-background {
+  background-color: var(--color-background) !important;
 }
 
-.floating {
-  animation: floating 3s ease-in-out infinite;
+.bg-card {
+  background-color: var(--color-card) !important;
 }
 
-@keyframes floating {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+.text-white, .text-slate-100, .text-slate-200, .text-slate-300 {
+  color: var(--color-accent) !important;
 }
 
-.noise-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1000;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+.text-slate-500, .text-slate-600, .text-slate-700, .text-slate-800, .text-slate-900, .text-foreground {
+  color: var(--color-primary) !important;
 }
 
-.card-shine {
-  position: relative;
-  overflow: hidden;
+.border-slate-200, .border-slate-300, .border-border {
+  border-color: var(--color-primary) !important;
 }
 
-.card-shine::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-  transition: left 0.5s ease;
+.skill-bar-bg {
+  @apply h-2 w-full bg-background border-2 border-primary rounded-full overflow-hidden;
 }
 
-.card-shine:hover::before {
-  left: 100%;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-muted);
+.skill-bar-fill {
+  @apply h-full bg-primary;
 }

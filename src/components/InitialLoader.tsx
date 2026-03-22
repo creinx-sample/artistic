@@ -50,10 +50,10 @@ export default function InitialLoader({ onComplete }: { onComplete: () => void }
         </motion.div>
         
         <div className="flex gap-4">
-          <motion.h1 variants={textVariants} className="font-display text-5xl md:text-7xl font-light tracking-wide">
+          <motion.h1 variants={textVariants} className="font-display text-5xl md:text-7xl font-light tracking-wide gradient-text">
             Suja
           </motion.h1>
-          <motion.h1 variants={textVariants} className="font-display text-5xl md:text-7xl font-bold tracking-wide">
+          <motion.h1 variants={textVariants} className="font-display text-5xl md:text-7xl font-bold tracking-wide gradient-text">
             Sambandam
           </motion.h1>
         </div>

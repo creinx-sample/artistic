@@ -11,18 +11,17 @@ interface WorkCardProps {
   audio: string;
   duration?: string;
   year?: string;
-  featured?: boolean;
 }
 
-export default function WorkCard({ title, description, type, language, image, audio, duration, year, featured = false }: WorkCardProps) {
+export default function WorkCard({ title, description, type, language, image, audio, duration, year }: WorkCardProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const languageColors: Record<string, string> = {
-    Hindi: 'bg-hindi/20 text-hindi border-hindi/30',
-    English: 'bg-english/20 text-english border-english/30',
-    Tamil: 'bg-tamil/20 text-tamil border-tamil/30',
-    Malayalam: 'bg-malayalam/20 text-malayalam border-malayalam/30',
+    Hindi: 'bg-primary/10 text-primary border-primary/20',
+    English: 'bg-secondary/10 text-secondary border-secondary/20',
+    Tamil: 'bg-primary/10 text-primary border-primary/20',
+    Malayalam: 'bg-secondary/10 text-secondary border-secondary/20',
   };
 
   useEffect(() => {
@@ -49,18 +48,18 @@ export default function WorkCard({ title, description, type, language, image, au
     <motion.div
       whileHover={{ y: -10 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className={`group relative bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/30 transition-colors duration-500 ${
-        featured ? 'lg:col-span-2 lg:row-span-2' : ''
-      }`}
+      className="group relative bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/30 transition-colors duration-500"
+
     >
       {/* Image */}
-      <div className={`relative overflow-hidden ${featured ? 'h-64 lg:h-80' : 'h-48'}`}>
+      <div className="relative overflow-hidden h-64">
+
         <img
           src={image}
           alt={title}
           className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
         
         {/* Play Button */}
         <motion.button
@@ -94,7 +93,7 @@ export default function WorkCard({ title, description, type, language, image, au
       {/* Content */}
       <div className="p-6">
         <div className="flex items-start justify-between gap-4 mb-3">
-          <h3 className={`font-display font-semibold ${featured ? 'text-xl' : 'text-lg'} group-hover:text-primary transition-colors`}>
+          <h3 className="font-display font-semibold text-xl group-hover:text-primary transition-colors">
             {title}
           </h3>
           <motion.button

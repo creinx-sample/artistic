@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import AnimatedBackground from './components/AnimatedBackground';
-import InitialLoader from './components/InitialLoader';
+
 import Home from './pages/Home';
 import About from './pages/About';
 import Portfolio from './pages/Portfolio';
@@ -78,7 +78,7 @@ function AnimatedRoutes() {
               <LanguagePage
                 language="Hindi"
                 color="bg-hindi"
-                gradient="from-hindi to-orange-600"
+                gradient="from-primary to-primary-light"
                 description="Experience the richness of Hindi voice artistry. Explore my extensive work in India's most widely spoken language."
                 icon="🇮🇳"
               />
@@ -92,7 +92,7 @@ function AnimatedRoutes() {
               <LanguagePage
                 language="English"
                 color="bg-english"
-                gradient="from-english to-blue-600"
+                gradient="from-secondary to-secondary-light"
                 description="Professional English voice work for global audiences. Delivering clarity and engagement in every project."
                 icon="🌍"
               />
@@ -106,7 +106,7 @@ function AnimatedRoutes() {
               <LanguagePage
                 language="Tamil"
                 color="bg-tamil"
-                gradient="from-tamil to-emerald-600"
+                gradient="from-primary to-secondary"
                 description="Authentic Tamil voice artistry celebrating the beauty of this ancient language. Bringing stories to life for Tamil audiences."
                 icon="🎭"
               />
@@ -120,7 +120,7 @@ function AnimatedRoutes() {
               <LanguagePage
                 language="Malayalam"
                 color="bg-malayalam"
-                gradient="from-malayalam to-amber-600"
+                gradient="from-secondary to-primary"
                 description="Capturing the melodic essence of Malayalam in every project. Connecting with audiences from God's Own Country."
                 icon="🌴"
               />
@@ -134,32 +134,17 @@ function AnimatedRoutes() {
 }
 
 function App() {
-  const [isAppLoading, setIsAppLoading] = useState(true);
-
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-background text-foreground relative selection:bg-primary/20">
-        <AnimatePresence mode="wait">
-          {isAppLoading ? (
-            <InitialLoader key="loader" onComplete={() => setIsAppLoading(false)} />
-          ) : (
-            <motion.div
-              key="main-app"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <ScrollToTop />
-              <div className="noise-overlay" />
-              <AnimatedBackground />
-              <Navbar />
-              <main className="relative" style={{ zIndex: 1 }}>
-                <AnimatedRoutes />
-              </main>
-              <Footer />
-            </motion.div>
-          )}
-        </AnimatePresence>
+      <div className="min-h-screen bg-background text-foreground relative selection:bg-primary/20 leading-relaxed tracking-normal transition-colors duration-500">
+        <ScrollToTop />
+        <div className="noise-overlay opacity-[0.03]" />
+        <AnimatedBackground />
+        <Navbar />
+        <main className="relative" style={{ zIndex: 1 }}>
+          <AnimatedRoutes />
+        </main>
+        <Footer />
       </div>
     </BrowserRouter>
   );

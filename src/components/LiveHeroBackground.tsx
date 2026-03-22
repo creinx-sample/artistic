@@ -11,8 +11,8 @@ function SonicRings() {
           style={{
             width: `${i * 300}px`,
             height: `${i * 300}px`,
-            border: `1px solid ${i % 2 === 0 ? 'rgba(0, 168, 197, 0.2)' : 'rgba(162, 45, 113, 0.2)'}`,
-            boxShadow: `0 0 40px ${i % 2 === 0 ? 'rgba(0, 168, 197, 0.05)' : 'rgba(162, 45, 113, 0.05)'} inset`,
+            border: `2px solid ${i % 2 === 0 ? 'rgba(6, 182, 212, 0.4)' : 'rgba(236, 72, 153, 0.4)'}`,
+            boxShadow: `0 0 30px ${i % 2 === 0 ? 'rgba(6, 182, 212, 0.4)' : 'rgba(236, 72, 153, 0.4)'} inset, 0 0 30px ${i % 2 === 0 ? 'rgba(6, 182, 212, 0.4)' : 'rgba(236, 72, 153, 0.4)'}`,
           }}
           animate={{
             scale: [1, 1.05, 1],
@@ -34,13 +34,13 @@ const BAR_COUNT = 60;
 
 function LiveEqualizer() {
   return (
-    <div className="absolute bottom-0 left-0 right-0 h-48 flex items-end justify-center gap-1 opacity-20 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+    <div className="absolute bottom-0 left-0 right-0 h-48 flex items-end justify-center gap-1 opacity-80 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
       {Array.from({ length: BAR_COUNT }, (_, i) => {
         const heightBase = 20 + Math.random() * 80;
         return (
           <motion.div
             key={i}
-            className="w-1.5 md:w-3 bg-gradient-to-t from-primary to-secondary rounded-t-full origin-bottom"
+            className="w-1.5 md:w-3 bg-gradient-to-t from-blue-500 via-fuchsia-500 to-rose-500 rounded-t-full origin-bottom shadow-[0_0_20px_rgba(236,72,153,0.8)]"
             animate={{
               height: [heightBase * 0.2, heightBase, heightBase * 0.3, heightBase * 1.2, heightBase * 0.2],
             }}
@@ -64,7 +64,9 @@ function FloatingMusicNotes() {
       {Array.from({ length: 15 }).map((_, i) => (
         <motion.div
           key={i}
-          className="absolute text-primary/10 text-2xl md:text-4xl font-serif"
+          className={`absolute text-2xl md:text-5xl font-serif drop-shadow-[0_0_10px_currentColor] ${
+            ['text-cyan-400', 'text-fuchsia-500', 'text-rose-500', 'text-blue-500'][i % 4]
+          }`}
           initial={{
             y: '100vh',
             x: `${Math.random() * 100}vw`,

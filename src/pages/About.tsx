@@ -1,5 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   Mic2, Headphones, Film, Globe, Heart, Music, ArrowRight, Instagram, Mail, Phone, Languages 
@@ -9,35 +8,6 @@ import ScrollReveal from '../components/ScrollReveal';
 
 
 export default function About() {
-  const carouselPhotos = [
-    { src: '/images/suja_studio.jpg', alt: 'Suja in the recording studio' },
-  ];
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [direction, setDirection] = useState(1);
-
-  const goTo = useCallback((index: number, dir?: number) => {
-    setDirection(dir ?? (index > activeSlide ? 1 : -1));
-    setActiveSlide(index);
-  }, [activeSlide]);
-
-  const next = useCallback(() => {
-    const n = (activeSlide + 1) % carouselPhotos.length;
-    setDirection(1);
-    setActiveSlide(n);
-  }, [activeSlide, carouselPhotos.length]);
-
-  const prev = useCallback(() => {
-    const n = (activeSlide - 1 + carouselPhotos.length) % carouselPhotos.length;
-    setDirection(-1);
-    setActiveSlide(n);
-  }, [activeSlide, carouselPhotos.length]);
-
-  // Auto-advance every 7 seconds
-  useEffect(() => {
-    const timer = setInterval(next, 7000);
-    return () => clearInterval(timer);
-  }, [next]);
-
   const languages = [
     { name: 'English', icon: Globe, level: 100, desc: 'Read, Speak & Write — Professional international neutral accent.' },
     { name: 'Hindi', icon: Mic2, level: 90, desc: 'Read & Speak — Fluent in dubbing, radio, and brand narration.' },

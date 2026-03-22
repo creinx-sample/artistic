@@ -21,10 +21,10 @@ export default function Home() {
   const featuredWorks = getFeaturedWorks();
 
   const languages = [
-    { name: 'English', path: '/english', color: 'from-secondary to-secondary-light', icon: '🌍', works: '40+' },
-    { name: 'Hindi', path: '/hindi', color: 'from-primary to-primary-light', icon: '🇮🇳', works: '50+' },
-    { name: 'Tamil', path: '/tamil', color: 'from-primary to-secondary', icon: '🎭', works: '35+' },
-    { name: 'Malayalam', path: '/malayalam', color: 'from-secondary to-primary', icon: '🌴', works: '30+' },
+    { name: 'English', path: '/english', color: 'from-secondary to-secondary-light', icon: Globe, works: '40+' },
+    { name: 'Hindi', path: '/hindi', color: 'from-primary to-primary-light', icon: Mic2, works: '50+' },
+    { name: 'Tamil', path: '/tamil', color: 'from-primary to-secondary', icon: Film, works: '35+' },
+    { name: 'Malayalam', path: '/malayalam', color: 'from-secondary to-primary', icon: Headphones, works: '30+' },
   ];
 
 
@@ -249,7 +249,13 @@ export default function Home() {
                   <div className="absolute inset-0 bg-card group-hover:bg-transparent transition-colors duration-500" />
 
                   <div className="relative h-full p-8 flex flex-col justify-between">
-                    <div className="text-5xl">{lang.icon}</div>
+                    <motion.div 
+                      className="text-primary group-hover:text-white transition-colors duration-500"
+                      animate={{ y: [0, -10, 0] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: i * 0.2 }}
+                    >
+                      <lang.icon className="w-12 h-12 drop-shadow-md" />
+                    </motion.div>
                     <div>
                       <h3 className="font-display text-2xl font-bold mb-2 group-hover:text-white transition-colors">
                         {lang.name}

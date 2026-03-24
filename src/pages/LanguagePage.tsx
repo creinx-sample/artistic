@@ -1,20 +1,15 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Film, Headphones, Play, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import WorkCard from '../components/WorkCard';
-import AudioWave from '../components/AudioWave';
 import { getWorksByLanguage, type Work } from '../data/works';
 
 interface LanguagePageProps {
   language: Work['language'];
-  color: string;
   gradient: string;
   description: string;
-  icon: string;
+  icon: any; // Simplified for this refactor
 }
 
-export default function LanguagePage({ language, color, gradient, description, icon }: LanguagePageProps) {
+export default function LanguagePage({ language, description }: LanguagePageProps) {
   const [filter, setFilter] = useState<'all' | 'dubbing' | 'podcast'>('all');
   const works = getWorksByLanguage(language);
   
@@ -22,183 +17,79 @@ export default function LanguagePage({ language, color, gradient, description, i
     ? works 
     : works.filter(work => work.type === filter);
 
-  const dubbingCount = works.filter(w => w.type === 'dubbing').length;
-  const podcastCount = works.filter(w => w.type === 'podcast').length;
-
   return (
-    <div className="min-h-screen pt-24">
-      {/* Hero */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className={`absolute top-0 left-1/4 w-[600px] h-[600px] ${color}/10 rounded-full blur-3xl`} />
-          <div className={`absolute bottom-0 right-1/4 w-[600px] h-[600px] ${color}/5 rounded-full blur-3xl`} />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-6">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-muted hover:text-foreground transition-colors mb-8"
-          >
-            <ArrowLeft className="w-4 h-4" />
+    <div className="min-h-screen pt-32 pb-20">
+      <section style={{ padding: '0' }}>
+        <div className="reveal">
+          <Link to="/" className="nav-link" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', marginBottom: '2rem' }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
             Back to Home
           </Link>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className="flex items-center gap-4 mb-6"
-              >
-                <motion.span
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-                  className="text-6xl"
-                >{icon}</motion.span>
-                <AudioWave color={gradient} />
-              </motion.div>
-              <motion.h1
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-                className="font-display text-5xl md:text-7xl font-bold mb-6"
-              >
-                <span className={`bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
-                  {language}
-                </span>
-                <br />Works
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-                className="text-xl text-muted leading-relaxed mb-8"
-              >
-                {description}
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.35 }}
-                className="flex gap-6"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="text-center"
-                >
-                  <div className={`text-4xl font-display font-bold bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
-                    {dubbingCount}
-                  </div>
-                  <p className="text-sm text-muted">Dubbing Projects</p>
-                </motion.div>
-                <div className="w-px bg-border" />
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="text-center"
-                >
-                  <div className={`text-4xl font-display font-bold bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
-                    {podcastCount}
-                  </div>
-                  <p className="text-sm text-muted">Podcast Episodes</p>
-                </motion.div>
-              </motion.div>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, x: 40 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ delay: 0.25, duration: 0.55, ease: 'easeOut' }}
-              className="relative"
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${gradient} rounded-3xl blur-2xl opacity-30`} />
-              <div className="relative bg-card rounded-3xl border border-border p-8">
-                <div className="grid grid-cols-2 gap-4">
-                  {works.slice(0, 4).map((work, i) => (
-                    <motion.div
-                      key={work.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 + i * 0.1 }}
-                      className="relative group rounded-xl overflow-hidden"
-                    >
-                      <img
-                        src={work.image}
-                        alt={work.title}
-                        className="w-full h-32 object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent flex items-end p-3">
-                        <p className="text-xs font-semibold text-secondary truncate">{work.title}</p>
-                      </div>
-                      <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        className="absolute inset-0 flex items-center justify-center bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity"
-                      >
-                        <Play className="w-8 h-8 text-primary" fill="currentColor" />
-                      </motion.div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
         </div>
-      </section>
 
-      {/* Filter Tabs */}
-      <section className="sticky top-20 z-40 bg-background/80 backdrop-blur-xl border-y border-border py-4">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-center gap-2">
-            {[
-              { value: 'all', label: 'All Works', count: works.length, icon: null },
-              { value: 'dubbing', label: 'Dubbing', count: dubbingCount, icon: Film },
-              { value: 'podcast', label: 'Podcasts', count: podcastCount, icon: Headphones },
-            ].map((item) => (
+        <div className="section-label reveal d1">{language} Portfolio</div>
+        <h2 className="section-title reveal d2">Capturing the <em>essence</em> of {language}</h2>
+        
+        <div className="reveal d3">
+          <p className="about-bio" style={{ maxWidth: '800px', marginBottom: '3rem' }}>
+            {description}
+          </p>
+        </div>
+
+        {/* Filters */}
+        <div className="reveal d4" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '3rem' }}>
+          <div style={{ display: 'flex', background: 'rgba(255,255,255,0.05)', padding: '0.4rem', borderRadius: '100px', border: '1px solid rgba(255,255,255,0.1)' }}>
+            {['all', 'dubbing', 'podcast'].map((f) => (
               <button
-                key={item.value}
-                onClick={() => setFilter(item.value as typeof filter)}
-                className={`px-6 py-3 rounded-full text-sm font-medium flex items-center gap-2 transition-all ${
-                  filter === item.value
-                    ? `bg-gradient-to-r ${gradient} text-white shadow-lg`
-                    : 'bg-card border border-border text-muted hover:text-foreground hover:border-muted'
-                }`}
+                key={f}
+                onClick={() => setFilter(f as any)}
+                className={`nav-link ${filter === f ? 'active' : ''}`}
+                style={{ padding: '0.5rem 1.2rem', fontSize: '0.85rem', textTransform: 'capitalize' }}
               >
-                {item.icon && <item.icon className="w-4 h-4" />}
-                {item.label}
-                <span className={`px-2 py-0.5 rounded-full text-xs ${
-                  filter === item.value ? 'bg-white/20' : 'bg-border'
-                }`}>
-                  {item.count}
-                </span>
+                {f === 'all' ? `All (${works.length})` : f}
               </button>
             ))}
           </div>
         </div>
-      </section>
 
-      {/* Works Grid */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            layout
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredWorks.map((work, i) => (
-                <motion.div
-                  key={work.id}
-                  layout
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ delay: i * 0.05 }}
-                >
-                  <WorkCard {...work} />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+        <div className="works-grid">
+          {filteredWorks.map((work, i) => (
+            <div 
+              key={work.id} 
+              className={`work-card reveal d${(i % 4) + 1}`}
+            >
+              <div className="work-img">
+                <div style={{ width: '100%', height: '100%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                   <span style={{ fontSize: '2rem', opacity: 0.2 }}>{work.type === 'dubbing' ? '🎬' : '🎙️'}</span>
+                </div>
+              </div>
+              <div className="work-info">
+                <div className="work-meta">
+                  <span className="work-tag">{work.type}</span>
+                </div>
+                <h3 className="work-title">{work.title}</h3>
+                <div className="work-play">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  <span>Listen</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="reveal d4" style={{ marginTop: '8rem', textAlign: 'center', padding: '4rem', background: 'rgba(255,255,255,0.03)', borderRadius: '40px', border: '1px solid rgba(255,255,255,0.05)' }}>
+          <h3 className="section-title" style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>Want a custom <em>sample?</em></h3>
+          <p style={{ opacity: 0.6, marginBottom: '2.5rem', maxWidth: '500px', marginInline: 'auto' }}>
+            I can record a personalized sample for your script in {language} within 24 hours.
+          </p>
+          <Link to="/contact" className="btn-primary" style={{ marginInline: 'auto' }}>
+            Request Sample
+          </Link>
         </div>
       </section>
     </div>

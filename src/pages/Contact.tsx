@@ -1,14 +1,10 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Send, Mail, Phone, MapPin, Clock, CheckCircle, Mic2, Headphones, Film, MessageSquare, Palette } from 'lucide-react';
-import AudioWave from '../components/AudioWave';
 
 export default function Contact() {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
     service: '',
-    language: '',
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
@@ -16,240 +12,102 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setTimeout(() => setSubmitted(false), 5000);
   };
 
-  const services = [
-    { value: 'dubbing', label: 'Film/TV Dubbing', icon: Film },
-    { value: 'podcast', label: 'Podcast Recording', icon: Headphones },
-    { value: 'voiceover', label: 'Voice Over', icon: Mic2 },
-    { value: 'boutique', label: 'Boutique / Design', icon: Palette },
-    { value: 'other', label: 'Other', icon: MessageSquare },
-  ];
-
-  const contactInfo = [
-    { icon: Mail, label: 'Email', value: 'sujavagishwari.voiceartist@gmail.com', href: 'mailto:sujavagishwari.voiceartist@gmail.com' },
-    { icon: Phone, label: 'Phone', value: '+91 89391 79351', href: 'tel:+918939179351' },
-    { icon: MapPin, label: 'Location', value: 'Chennai, India', href: '#' },
-    { icon: Clock, label: 'Response Time', value: 'Within 24 hours', href: '#' },
-  ];
-
   return (
-    <div className="min-h-screen pt-24">
-      {/* Hero */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-3xl opacity-50" />
-          <div className="absolute bottom-0 right-1/3 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-3xl opacity-50" />
-        </div>
+    <div className="min-h-screen pt-32 pb-0" style={{ position: 'relative', overflow: 'hidden' }}>
+      <div className="contact-bg-glow" style={{ top: '20%', right: '10%' }}></div>
+      <div className="contact-bg-glow" style={{ bottom: '10%', left: '5%' }}></div>
+      
+      <div className="contact-accent" style={{ top: '15%', left: '8%', animationDelay: '0s' }}>𝄞</div>
+      <div className="contact-accent" style={{ top: '40%', right: '12%', animationDelay: '1s', fontSize: '1.5rem' }}>♭</div>
+      <div className="contact-accent" style={{ bottom: '25%', left: '15%', animationDelay: '2s' }}>♯</div>
+      <div className="contact-accent" style={{ bottom: '15%', right: '25%', animationDelay: '0.5s', fontSize: '1.2rem' }}>𝄢</div>
 
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto">
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <AudioWave className="justify-center mb-6" barCount={7} />
-            </motion.div>
-            <motion.h1
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.1, ease: 'easeOut' }}
-              className="font-display text-5xl md:text-7xl font-bold mb-6"
-            >
-              Let's <span className="gradient-text">Connect</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.25, ease: 'easeOut' }}
-              className="text-xl text-muted"
-            >
-              Have a project in mind? I'd love to hear about it. Let's create something amazing together.
-            </motion.p>
+      <section id="contact" style={{ padding: '15rem 5% 2rem', maxWidth: '1200px', margin: '0 auto' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', width: '100%' }}>
+          <div className="reveal">
+            <div className="section-label">Get In Touch</div>
+            <h2 className="section-title d1" style={{ marginBottom: '1.5rem' }}>Ready to <em>collaborate?</em></h2>
+            
+            <p className="about-bio d2" style={{ fontSize: '1.2rem', opacity: 0.9, maxWidth: '800px' }}>
+              Whether you have a script ready for dubbing, a podcast idea that needs a voice, or just want to discuss a creative project — my door is always open.
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* Contact Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-5 gap-12">
-            {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="lg:col-span-2 space-y-8"
-            >
-              <div>
-                <h2 className="font-display text-3xl font-bold mb-4">Get In Touch</h2>
-                <p className="text-muted">
-                  Ready to bring your project to life with professional voice artistry? Reach out and let's discuss how I can help.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                {contactInfo.map((item, i) => (
-                  <motion.a
-                    key={item.label}
-                    href={item.href}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    className="flex items-start gap-4 p-4 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all group"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary group-hover:to-secondary transition-all">
-                      <item.icon className="w-5 h-5 text-primary group-hover:text-background transition-colors" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted">{item.label}</p>
-                      <p className="font-medium group-hover:text-primary transition-colors">{item.value}</p>
-                    </div>
-                  </motion.a>
-                ))}
-              </div>
-
-              {/* Languages Available */}
-              <div className="p-6 rounded-2xl bg-card border border-border">
-                <h3 className="font-display text-lg font-semibold mb-4">Languages Available</h3>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    { name: 'Hindi', color: 'bg-hindi' },
-                    { name: 'English', color: 'bg-english' },
-                    { name: 'Tamil', color: 'bg-tamil' },
-                    { name: 'Malayalam', color: 'bg-malayalam' },
-                  ].map((lang) => (
-                    <span
-                      key={lang.name}
-                      className="px-4 py-2 rounded-full bg-card-hover border border-border text-sm flex items-center gap-2"
-                    >
-                      <span className={`w-2 h-2 rounded-full ${lang.color}`} />
-                      {lang.name}
-                    </span>
-                  ))}
+          <div className="contact-grid-system">
+            <div className="reveal d2">
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.2rem' }}>
+                <div className="contact-glass-card" style={{ padding: '1.5rem' }}>
+                  <div className="section-label" style={{ marginBottom: '0.6rem', fontSize: '0.65rem' }}>Email Me</div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--gold)', fontFamily: 'var(--fb)', wordBreak: 'break-all', opacity: 0.9 }}>sujavagishwari.voiceartist@gmail.com</div>
+                </div>
+                <div className="contact-glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div className="section-label" style={{ marginBottom: '0.6rem', fontSize: '0.65rem' }}>Call / WhatsApp</div>
+                  <div style={{ fontSize: '1.1rem', color: 'var(--gold)', fontFamily: 'var(--fd)' }}>+91 89391 79351</div>
+                </div>
+                <div className="contact-glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div className="section-label" style={{ marginBottom: '0.6rem', fontSize: '0.65rem' }}>Location</div>
+                  <div style={{ fontSize: '1.1rem', color: 'var(--gold)', fontFamily: 'var(--fd)' }}>Chennai, Tamil Nadu</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="lg:col-span-3"
-            >
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-3xl blur-2xl" />
-                <form
+            <div className="reveal d3">
+              <div className="contact-glass-card" style={{ padding: '2.5rem' }}>
+                <form 
                   onSubmit={handleSubmit}
-                  className="relative bg-white rounded-3xl border border-border p-8 md:p-10 shadow-xl"
+                  style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
                 >
-                  {submitted ? (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="text-center py-12"
-                    >
-                      <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                        <CheckCircle className="w-10 h-10 text-background" />
-                      </div>
-                      <h3 className="font-display text-2xl font-bold mb-2">Message Sent!</h3>
-                      <p className="text-muted">I'll get back to you within 24 hours.</p>
-                    </motion.div>
-                  ) : (
-                    <>
-                      <h3 className="font-display text-2xl font-bold mb-8">Send a Message</h3>
-                      
-                      <div className="grid md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                          <label className="block text-sm font-medium mb-2">Your Name</label>
-                          <input
-                            type="text"
-                            required
-                            value={formState.name}
-                            onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                            className="w-full px-4 py-3 rounded-xl bg-background border border-primary focus:bg-card focus:outline-none transition-colors placeholder:text-primary/50"
-                            placeholder="John Doe"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium mb-2">Email Address</label>
-                          <input
-                            type="email"
-                            required
-                            value={formState.email}
-                            onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                            className="w-full px-4 py-3 rounded-xl bg-background border-2 border-secondary focus:bg-card focus:outline-none transition-colors placeholder:text-secondary/60"
-                            placeholder="john@example.com"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="mb-6">
-                        <label className="block text-sm font-medium mb-3">Service Required</label>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                          {services.map((service) => (
-                            <button
-                              key={service.value}
-                              type="button"
-                              onClick={() => setFormState({ ...formState, service: service.value })}
-                              className={`p-4 rounded-xl border text-center transition-all ${
-                                formState.service === service.value
-                                  ? 'bg-gradient-to-br from-primary to-secondary border-transparent text-background'
-                                  : 'bg-background border-primary/20 hover:border-primary/50'
-                              }`}
-                            >
-                              <service.icon className="w-5 h-5 mx-auto mb-2" />
-                              <span className="text-xs font-medium">{service.label}</span>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="mb-6">
-                        <label className="block text-sm font-medium mb-2">Preferred Language</label>
-                        <select
-                          value={formState.language}
-                          onChange={(e) => setFormState({ ...formState, language: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:outline-none transition-colors"
-                        >
-                          <option value="">Select a language</option>
-                          <option value="hindi">Hindi</option>
-                          <option value="english">English</option>
-                          <option value="tamil">Tamil</option>
-                          <option value="malayalam">Malayalam</option>
-                          <option value="multiple">Multiple Languages</option>
-                        </select>
-                      </div>
-
-                      <div className="mb-8">
-                        <label className="block text-sm font-medium mb-2">Project Details</label>
-                        <textarea
-                          required
-                          rows={5}
-                          value={formState.message}
-                          onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:outline-none transition-colors resize-none"
-                          placeholder="Tell me about your project, timeline, and any specific requirements..."
-                        />
-                      </div>
-
-                      <motion.button
-                        type="submit"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="vibrant-btn w-full flex items-center justify-center gap-2"
-                      >
-                        <Send className="w-5 h-5" />
-                        Send Message
-                      </motion.button>
-                    </>
-                  )}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1.2rem' }}>
+                    <input 
+                      type="text" 
+                      placeholder="Name" 
+                      required
+                      value={formState.name}
+                      onChange={(e) => setFormState({...formState, name: e.target.value})}
+                      className="contact-input"
+                    />
+                    <input 
+                      type="email" 
+                      placeholder="Email" 
+                      required
+                      value={formState.email}
+                      onChange={(e) => setFormState({...formState, email: e.target.value})}
+                      className="contact-input"
+                    />
+                  </div>
+                  <input 
+                    type="text" 
+                    placeholder="Service (e.g. Hindi Dubbing)" 
+                    value={formState.service}
+                    onChange={(e) => setFormState({...formState, service: e.target.value})}
+                    className="contact-input"
+                  />
+                  <textarea 
+                    placeholder="Tell me about your project..." 
+                    required
+                    rows={4}
+                    value={formState.message}
+                    onChange={(e) => setFormState({...formState, message: e.target.value})}
+                    className="contact-input"
+                    style={{ resize: 'none' }}
+                  />
+                  <button 
+                    type="submit" 
+                    className="btn-primary" 
+                    style={{ width: '100%', justifyContent: 'center', height: '3.5rem', fontSize: '1.1rem' }}
+                  >
+                    {submitted ? 'Message Sent!' : 'Send Message'}
+                  </button>
                 </form>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
+      <div style={{ height: '10rem' }}></div>
     </div>
   );
 }

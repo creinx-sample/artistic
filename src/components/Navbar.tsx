@@ -1,145 +1,86 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Mic2, Headphones } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { name: 'HOME', path: '/' },
-    { name: 'ABOUT ME', path: '/about' },
-    { name: 'WORKS', path: '/portfolio' },
+    { name: 'Home', path: '/' },
+    { name: 'About Me', path: '/about' },
+    { name: 'Works', path: '/portfolio' },
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'bg-background border-b-4 border-primary shadow-lg shadow-primary/10' : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 group">
-            <motion.div
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
-              className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center"
-            >
-              <Mic2 className="w-6 h-6 text-white" />
-            </motion.div>
-            <div>
-              <h1 className="font-display text-xl font-bold text-foreground">Suja Sambandam</h1>
-              <p className="font-mono text-[10px] uppercase tracking-widest text-primary flex items-center gap-1 mt-1 font-semibold">
-                <Headphones className="w-3 h-3" /> Voice Artist
-              </p>
+    <nav className={isScrolled ? 'scrolled' : ''}>
+      <div className="nav-container">
+        <div className="nav-left">
+          <Link to="/" className="nav-logo">
+            <div className="mic-circle">🎙️</div>
+            <div className="logo-text">
+              <span className="logo-name">Suja Sambandam</span>
+              <span className="logo-tagline">Voice Artist</span>
             </div>
           </Link>
+        </div>
 
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-8">
+        <div className="nav-right">
+          {/* Desktop Nav Links moved to right */}
+          <div className="nav-links">
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.path}
-                to={link.path}
-                className="relative group py-1"
+                href={link.path}
+                className={`nav-link`}
               >
-                <motion.span
-                  whileHover={{ y: -1 }}
-                  transition={{ duration: 0.15 }}
-                  className={`font-mono text-xs tracking-widest uppercase transition-colors block ${
-                    location.pathname === link.path ? 'text-primary text-glow' : 'text-foreground/70 hover:text-primary'
-                  }`}
-                >
-                  {link.name}
-                </motion.span>
-                {/* Active indicator */}
-                {location.pathname === link.path && (
-                  <motion.div
-                    layoutId="navbar-indicator"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-secondary"
-                  />
-                )}
-                {/* Hover underline (non-active) */}
-                {location.pathname !== link.path && (
-                  <motion.div
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-foreground/20 origin-left"
-                  />
-                )}
-              </Link>
+                {link.name}
+              </a>
             ))}
-            <motion.a
-              href="/contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.96 }}
-              className="vibrant-btn px-6 py-2 text-sm"
-            >
-              Contact Me
-            </motion.a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg bg-card"
+          <Link to="/contact" className="nav-cta">Contact Me</Link>
+          
+          {/* Mobile Toggle */}
+          <div 
+            className={`nav-toggle ${isMenuOpen ? 'active' : ''}`} 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white border-t border-border shadow-xl"
+      <div className={`mob-menu ${isMenuOpen ? 'open' : ''}`}>
+        {navLinks.map((link) => (
+          <Link
+            key={link.path}
+            to={link.path}
+            className="nav-link"
+            onClick={() => setIsMenuOpen(false)}
           >
-            <div className="px-6 py-4 space-y-3">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.path}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <Link
-                    to={link.path}
-                    onClick={() => setIsOpen(false)}
-                    className={`block py-2 text-lg ${
-                      location.pathname === link.path ? 'text-primary' : 'text-foreground/70'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-              <Link
-                to="/contact"
-                onClick={() => setIsOpen(false)}
-                className="block w-full text-center py-3 bg-gradient-to-r from-primary to-secondary text-white font-display tracking-wide uppercase rounded-xl"
-              >
-                Contact Me
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+            {link.name}
+          </Link>
+        ))}
+        <Link 
+          to="/contact" 
+          className="nav-cta" 
+          style={{ marginTop: '1rem', display: 'inline-block' }}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          Contact Me
+        </Link>
+      </div>
+    </nav>
   );
 }

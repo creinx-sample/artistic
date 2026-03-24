@@ -1,388 +1,229 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Mic2, Headphones, Film, Globe } from 'lucide-react';
-import AudioWave from '../components/AudioWave';
-import WorkCard from '../components/WorkCard';
-import TextReveal from '../components/TextReveal';
-import InfiniteMarquee from '../components/InfiniteMarquee';
-import LiveHeroBackground from '../components/LiveHeroBackground';
-import { getFeaturedWorks } from '../data/works';
+
+const SYMBOLS = ['♩', '♪', '♫', '♬', '♭', '♯', '𝄞'];
 
 export default function Home() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const [eqBars, setEqBars] = useState<number[]>([]);
+  const [heroNotes, setHeroNotes] = useState<{ id: number; symbol: string; left: string; size: string; duration: string; delay: string }[]>([]);
+  const [particles, setParticles] = useState<{ id: number; left: string; size: string; duration: string; delay: string }[]>([]);
 
-  const featuredWorks = getFeaturedWorks();
+  useEffect(() => {
+    // EQ bars
+    const bars = Array.from({ length: 22 }, () => 10 + Math.random() * 55);
+    setEqBars(bars);
 
-  const languages = [
-    { name: 'English', path: '/english', color: 'from-secondary to-secondary-light', icon: Globe, works: '40+' },
-    { name: 'Hindi', path: '/hindi', color: 'from-primary to-primary-light', icon: Mic2, works: '50+' },
-    { name: 'Tamil', path: '/tamil', color: 'from-primary to-secondary', icon: Film, works: '35+' },
-    { name: 'Malayalam', path: '/malayalam', color: 'from-secondary to-primary', icon: Headphones, works: '30+' },
-  ];
+    // Hero notes
+    const notes = Array.from({ length: 18 }, (_, i) => ({
+      id: i,
+      symbol: SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)],
+      left: `${Math.random() * 100}%`,
+      size: `${0.9 + Math.random() * 1.2}rem`,
+      duration: `${10 + Math.random() * 14}s`,
+      delay: `${Math.random() * 10}s`
+    }));
+    setHeroNotes(notes);
 
+    // Particles
+    const parts = Array.from({ length: 25 }, (_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      size: `${2 + Math.random() * 4}px`,
+      duration: `${8 + Math.random() * 12}s`,
+      delay: `${Math.random() * 10}s`
+    }));
+    setParticles(parts);
 
+    // Intersection observer for counters
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.dataset.target || '0');
+          const suffix = el.dataset.suffix || '';
+          let t0: number | null = null;
+          const dur = 1800;
+          
+          const step = (ts: number) => {
+            if (!t0) t0 = ts;
+            const p = Math.min((ts - t0) / dur, 1);
+            const ease = 1 - Math.pow(1 - p, 4);
+            el.textContent = Math.floor(ease * target) + suffix;
+            if (p < 1) requestAnimationFrame(step);
+            else el.textContent = target + suffix;
+          };
+          requestAnimationFrame(step);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('[data-target]').forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const [aboutIdx, setAboutIdx] = useState(0);
+  const aboutImages = ['/images/suja1.jpg', '/images/suja2.png', '/images/suja3.png'];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setAboutIdx(prev => (prev + 1) % aboutImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div className="relative">
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image layer */}
-        <motion.div style={{ y }} className="absolute inset-0">
-          <img
-            src="/images/hero-bg.jpg"
-            alt="Studio"
-            className="w-full h-full object-cover opacity-10 mix-blend-luminosity"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-        </motion.div>
-
-        {/* Live Animated Overlay */}
-        <LiveHeroBackground />
-
-        <motion.div style={{ opacity }} className="relative max-w-7xl mx-auto px-6 py-32">
-          <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="flex items-center gap-4 mb-8"
-            >
-              <AudioWave />
-              <span className="text-primary font-medium">Professional Voice Artist</span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6"
-            >
-              Suja <span className="gradient-text">Sambandam</span>
-            </motion.h1>
-
-            <TextReveal
-              text="Professional Voice Artist specializing in the art of dubbing and narrative storytelling across Tamil, Hindi, English, and Malayalam. Bringing classic and contemporary characters to life with refined industry expertise."
-              delay={0.4}
-              className="text-2xl font-body italic leading-relaxed mb-10 max-w-xl text-foreground/80"
+    <div className="home-page">
+      
+      {/* HERO */}
+      <section id="hero">
+        <div className="hero-bg"></div>
+        <div className="hero-particles">
+          {particles.map(p => (
+            <div 
+              key={p.id} 
+              className="particle" 
+              style={{ left: p.left, width: p.size, height: p.size, animationDuration: p.duration, animationDelay: p.delay }} 
             />
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="flex flex-wrap gap-6"
+          ))}
+        </div>
+        <div id="heroNotes">
+          {heroNotes.map(n => (
+            <div 
+              key={n.id} 
+              className="staff-note" 
+              style={{ left: n.left, fontSize: n.size, animationDuration: n.duration, animationDelay: n.delay }}
             >
-              <Link
-                to="/portfolio"
-                className="vibrant-btn flex items-center gap-3"
-              >
-                Selected Works
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                to="/contact"
-                className="px-8 py-3 border border-foreground/20 italic font-display hover:border-primary transition-all flex items-center gap-2"
-              >
-                Connect With Me
-              </Link>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 rounded-full border-2 border-muted flex items-start justify-center p-2"
-          >
-            <motion.div
-              animate={{ height: ['20%', '80%', '20%'] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 bg-primary rounded-full"
-            />
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Scrolling Text Strip */}
-      <InfiniteMarquee
-        items={['Tamil Dubbing', 'Hindi Voiceovers', 'English Narration', 'Malayalam Podcasts', 'Character Voices', 'Audiobooks']}
-        speed={30}
-        className="bg-card border-y border-border"
-      />
-
-
-
-      {/* About Section */}
-      <section id="about" className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
-          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-secondary/20 rounded-full blur-[100px]" />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Photo Carousel */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative max-w-sm mx-auto lg:mx-0"
-            >
-              <div className="relative overflow-hidden aspect-[4/5] border-4 border-primary shadow-xl bg-card rounded-2xl">
-                <img
-                  src="/images/suja_studio.jpg"
-                  alt="Suja Sambandam - Professional Voice Artist"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-primary/10 pointer-events-none" />
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <span className="text-primary font-medium tracking-widest uppercase mb-4 block">About Me</span>
-              <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
-                The Voice Behind the <span className="gradient-text">Stories</span>
-              </h2>
-              <p className="text-foreground/90 leading-relaxed mb-6 text-lg">
-                I'm Suja Sambandam, a professional voice artist with a rich professional history in Garment Design and international clothing trends. My journey from the intricate world of textile manufacturing to the art of vocal performance is fueled by a lifelong passion for storytelling.
-              </p>
-              <p className="text-foreground/80 leading-relaxed mb-8 text-lg opacity-90">
-                With extensive experience as a Merchandiser and founder of "Surabhi Garments," I bring a meticulous eye for detail to my voice work. Fluent in four languages—Tamil, Hindi, English, and Malayalam—I strive to create authentic, emotionally resonant audio experiences.
-              </p>
-
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                {[
-                  { icon: Mic2, label: 'Voice Acting' },
-                  { icon: Film, label: 'Film Dubbing' },
-                  { icon: Headphones, label: 'Podcasting' },
-                  { icon: Globe, label: 'Multilingual' },
-                ].map((item, i) => (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 * i }}
-                    className="flex items-center gap-3"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <item.icon className="w-4 h-4 text-primary" />
-                    </div>
-                    <span className="font-medium text-sm">{item.label}</span>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-6 items-center">
-                <Link
-                  to="/about"
-                  className="vibrant-btn flex items-center gap-3"
-                >
-                  Explore My Journey
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 text-primary font-medium hover:gap-4 transition-all"
-                >
-                  Let's Work Together <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Languages Section */}
-      <section className="relative py-32 bg-card">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="text-center mb-16"
-          >
-            <span className="text-primary font-medium tracking-widest uppercase mb-4 block">Multilingual Expertise</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
-              Four Languages, <span className="gradient-text">One Voice</span>
-            </h2>
-            <p className="text-muted max-w-2xl mx-auto">
-              Explore my work across different languages. Each brings its unique cultural flavor and emotional depth to the projects I undertake.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {languages.map((lang, i) => (
-              <motion.div
-                key={lang.name}
-                initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15, duration: 0.6, ease: 'easeOut' }}
-                whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              >
-                <Link
-                  to={lang.path}
-                  className="group block relative h-64 rounded-3xl overflow-hidden border border-border hover:border-transparent transition-all"
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${lang.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                  <div className="absolute inset-0 bg-card group-hover:bg-transparent transition-colors duration-500" />
-
-                  <div className="relative h-full p-8 flex flex-col justify-between">
-                    <motion.div 
-                      className="text-primary group-hover:text-white transition-colors duration-500"
-                      animate={{ y: [0, -10, 0] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: i * 0.2 }}
-                    >
-                      <lang.icon className="w-12 h-12 drop-shadow-md" />
-                    </motion.div>
-                    <div>
-                      <h3 className="font-display text-2xl font-bold mb-2 group-hover:text-white transition-colors">
-                        {lang.name}
-                      </h3>
-                      <p className="text-muted group-hover:text-white/80 transition-colors">
-                        {lang.works} Works
-                      </p>
-                    </div>
-                    <motion.div
-                      className="absolute bottom-8 right-8 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      <ArrowRight className="w-5 h-5 text-white" />
-                    </motion.div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Works */}
-      <section className="relative py-32">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-primary/30 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-secondary/30 rounded-full blur-3xl" />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16"
-          >
-            <div>
-              <span className="text-primary font-medium tracking-widest uppercase mb-4 block">Selected Works</span>
-              <h2 className="font-display text-4xl md:text-5xl font-bold">
-                My <span className="gradient-text">Portfolio</span>
-              </h2>
+              {n.symbol}
             </div>
-            <Link
-              to="/portfolio"
-              className="inline-flex items-center gap-2 text-primary font-medium hover:gap-4 transition-all"
-            >
-              View All Works <ArrowRight className="w-4 h-4" />
-            </Link>
-          </motion.div>
+          ))}
+        </div>
+        <div className="clef-wm" style={{ right: '3%', top: '50%', transform: 'translateY(-50%)' }}>𝄞</div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredWorks.map((work, i) => (
-              <motion.div
-                key={work.id}
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15, duration: 0.55, ease: 'easeOut' }}
-              >
-                <WorkCard {...work} />
-              </motion.div>
+        <div className="hero-glow-lines">
+          <div className="glow-line gl-1"></div>
+          <div className="glow-line gl-2"></div>
+        </div>
+
+        <div className="hero-content">
+          <div className="hero-badge">
+            <div className="badge-wave" style={{ gap: '3px' }}>
+              {[30, 70, 45, 90, 40, 60].map((h, i) => (
+                <div key={i} className="bw-line" style={{ height: `${h}%`, width: '3px', background: 'var(--gold)', borderRadius: '1px' }}></div>
+              ))}
+            </div>
+            <span className="badge-text-gold">Professional Voice Artist</span>
+          </div>
+          
+          <h1 className="hero-title">
+            Suja <span className="accent">Sambandam</span>
+          </h1>
+          
+          <p className="hero-desc">
+            Professional Voice Artist specializing in dubbing and podcasting across Tamil, Hindi, English, and Malayalam. Bringing characters to life with 15+ years of industry experience.
+          </p>
+          
+          <div className="hero-actions">
+            <a href="#portfolio" className="btn-primary">
+              <span style={{ fontSize: '1.2rem' }}>▶</span> Explore My Work <span>→</span>
+            </a>
+            <a href="#contact" className="btn-outline">Get In Touch</a>
+          </div>
+        </div>
+
+        <div className="hero-visual">
+          <div className="soundwave-container">
+            <div className="soundwave-ring"></div>
+            <div className="soundwave-ring"></div>
+            <div className="soundwave-ring"></div>
+            <div className="mic-icon">🎙️</div>
+          </div>
+          <div className="eq-wrap">
+            {eqBars.map((h, i) => (
+              <div 
+                key={i} 
+                className="eq-bar" 
+                style={{ height: `${h}px`, animationDuration: `${0.45 + Math.random() * 0.9}s`, animationDelay: `${(i * 0.07).toFixed(2)}s` }} 
+              />
             ))}
+          </div>
+        </div>
+
+        <svg className="hero-wave-svg" height="120" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path className="hw" d="M0,60 C150,20 300,100 450,50 C600,10 750,90 900,55 C1050,20 1150,70 1200,60" />
+          <path className="hw" d="M0,70 C200,30 400,110 600,60 C800,20 1000,80 1200,70" style={{ opacity: 0.6 }} />
+          <path className="hw" d="M0,50 C250,90 500,20 750,65 C900,90 1100,40 1200,50" style={{ opacity: 0.4 }} />
+        </svg>
+        <div className="hero-scroll">
+          <div className="mouse-icon">
+            <div className="mouse-wheel"></div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative py-32 overflow-hidden bg-background border-t border-primary/20">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-primary/10 pointer-events-none" />
+      {/* MARQUEE */}
+      <div className="marquee-strip">
+        <div className="marquee-inner">
+          {['Hindi Dubbing', 'English Narration', 'Tamil Storytelling', 'Malayalam Podcasts', 'Voice Acting', 'Audiobooks', 'OTT Content', 'E-Learning', 'Hindi Dubbing', 'English Narration', 'Tamil Storytelling', 'Malayalam Podcasts', 'Voice Acting', 'Audiobooks', 'OTT Content', 'E-Learning'].map((x, i) => (
+            <span key={i} className="mq-item">
+              {x}<span className="mq-dot">✦</span>
+            </span>
+          ))}
         </div>
+      </div>
 
-        <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ staggerChildren: 0.15 }}
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <AudioWave className="justify-center mb-8" barCount={7} />
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-              className="font-display text-4xl md:text-6xl font-bold mb-6"
-            >
-              Ready to <span className="gradient-text">Collaborate?</span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.25, ease: 'easeOut' }}
-              className="text-xl text-muted/80 mb-10 max-w-2xl mx-auto"
-            >
-              Whether you need a voice for your next film, documentary, podcast, or commercial, I'm here to bring your vision to life.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
-              className="flex flex-wrap justify-center gap-4"
-            >
-              <Link
-                to="/contact"
-                className="px-10 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-display uppercase tracking-widest transition-all flex items-center gap-2 hover:shadow-[0_0_20px_rgba(0,168,197,0.4)]"
-              >
-                Start a Project
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <a
-                href="mailto:sujavagishwari.voiceartist@gmail.com"
-                className="px-10 py-4 border border-border rounded-full font-medium hover:bg-card transition-all"
-              >
-                sujavagishwari.voiceartist@gmail.com
-              </a>
-            </motion.div>
-          </motion.div>
+      {/* ABOUT */}
+      <section id="about">
+        <div className="about-frame reveal">
+          <div className="about-img-container">
+            {aboutImages.map((src, idx) => (
+              <div 
+                key={idx} 
+                className={`about-slide ${idx === aboutIdx ? 'active' : ''}`}
+                style={{ backgroundImage: `url(${src})` }}
+              />
+            ))}
+            <div className="about-dots">
+              {aboutImages.map((_, idx) => (
+                <button 
+                  key={idx} 
+                  className={`about-dot ${idx === aboutIdx ? 'active' : ''}`}
+                  onClick={() => setAboutIdx(idx)}
+                />
+              ))}
+            </div>
+            <button className="carousel-control prev" onClick={() => setAboutIdx((prev) => (prev - 1 + aboutImages.length) % aboutImages.length)}>
+              <span>‹</span>
+            </button>
+            <button className="carousel-control next" onClick={() => setAboutIdx((prev) => (prev + 1) % aboutImages.length)}>
+              <span>›</span>
+            </button>
+          </div>
+        </div>
+        <div>
+          <div className="section-label reveal">About Me</div>
+          <h2 className="section-title reveal d1">The voice<br />behind <em>the story</em></h2>
+          <p className="about-bio reveal d2">I'm <strong>Suja Sambandam</strong>, a professional voice artist with over <strong>12 years of experience</strong> bringing scripts to life. Trained in the nuances of four languages, I bring <strong>tonal precision and emotional authenticity</strong> to every project, recorded from my professional studio with high-grade gear.</p>
+          <div className="reveal d3" style={{ marginTop: '2rem' }}>
+            <Link to="/about" className="btn-primary">Read Full Profile</Link>
+          </div>
+        </div>
+      </section>
+
+      <div className="musical-divider"><div className="divider-line"></div><span className="divider-note">𝅘𝅥𝅮</span><span className="divider-note" style={{ fontSize: '1rem' }}>♩</span><span className="divider-note">𝄞</span><span className="divider-note" style={{ fontSize: '1rem' }}>♩</span><span className="divider-note">𝅘𝅥𝅮</span><div className="divider-line"></div></div>
+
+      {/* LANGUAGES */}
+      <section id="languages">
+        <div className="lang-header">
+          <div className="section-label reveal" style={{ justifyContent: 'center' }}>My Languages</div>
+          <h2 className="section-title reveal d1">Four tongues,<br /><em>one voice</em></h2>
+        </div>
+        <div className="lang-grid">
+          <div className="lang-card reveal"    onClick={() => (window.location.href='/hindi')}><div className="lang-num">01</div><span className="lang-script">हिन्दी</span><div className="lang-name">Hindi</div><div className="lang-desc">50+ Works in dubbing and narrative storytelling. Bringing classic and contemporary characters to life.</div><div className="lang-tags"><span className="lang-tag">Dubbing</span><span className="lang-tag">Podcast</span><span className="lang-tag">Narration</span></div><div className="lang-arrow">→</div></div>
+          <div className="lang-card reveal d1" onClick={() => (window.location.href='/english')}><div className="lang-num">02</div><span className="lang-script">English</span><div className="lang-name">English</div><div className="lang-desc">40+ Works with a neutral international accent. Delivering clarity and engagement in every project.</div><div className="lang-tags"><span className="lang-tag">Dubbing</span><span className="lang-tag">Podcast</span><span className="lang-tag">Audiobook</span></div><div className="lang-arrow">→</div></div>
+          <div className="lang-card reveal d2" onClick={() => (window.location.href='/tamil')}><div className="lang-num">03</div><span className="lang-script">தமிழ்</span><div className="lang-name">Tamil</div><div className="lang-desc">35+ Works in film dubbing and cultural storytelling. Authenticity celebrating the beauty of the language.</div><div className="lang-tags"><span className="lang-tag">Dubbing</span><span className="lang-tag">Podcast</span><span className="lang-tag">Cinema</span></div><div className="lang-arrow">→</div></div>
+          <div className="lang-card reveal d3" onClick={() => (window.location.href='/malayalam')}><div className="lang-num">04</div><span className="lang-script">മലയാളം</span><div className="lang-name">Malayalam</div><div className="lang-desc">30+ Works capturing the melodic essence of the language. Connecting with audiences from Keralam.</div><div className="lang-tags"><span className="lang-tag">Dubbing</span><span className="lang-tag">Podcast</span><span className="lang-tag">Documentary</span></div><div className="lang-arrow">→</div></div>
         </div>
       </section>
     </div>

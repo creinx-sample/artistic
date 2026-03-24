@@ -1,0 +1,6 @@
+
+> placeholder-model-1@0.0.0 build
+> tsc -b && vite build
+
+src/pages/LanguagePage.tsx(3,10): error TS6133: 'Play' is declared but its value is never read.
+src/pages/LanguagePage.tsx(17,50): error TS6133: 'color' is declared but its value is never read.

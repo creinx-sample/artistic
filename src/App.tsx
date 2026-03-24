@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import AnimatedBackground from './components/AnimatedBackground';
+import MusicalCursor from './components/MusicalCursor';
+import { Mic2, Headphones, Film, Globe } from 'lucide-react';
 
 import Home from './pages/Home';
 import About from './pages/About';
@@ -19,130 +19,87 @@ function ScrollToTop() {
   return null;
 }
 
-const pageVariants = {
-  initial: { opacity: 0, y: 30, filter: 'blur(4px)' },
-  animate: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-  exit: {
-    opacity: 0,
-    y: -20,
-    filter: 'blur(3px)',
-    transition: { duration: 0.25, ease: 'easeIn' as const },
-  },
-};
-
-// Dark neutral overlay — just a brief flash of the background color
-const overlayVariants = {
-  initial: { opacity: 0 },
-  animate: {
-    opacity: [0, 0.85, 0.85, 0],
-    transition: { duration: 0.55, times: [0, 0.35, 0.6, 1], ease: 'easeInOut' as const },
-  },
-};
-
-const PageTransition = ({ children }: { children: React.ReactNode }) => (
-  <div className="relative">
-    <motion.div
-      variants={overlayVariants}
-      initial="initial"
-      animate="animate"
-      className="fixed inset-0 z-[9999] bg-background pointer-events-none"
-    />
-    <motion.div
-      variants={pageVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-    >
-      {children}
-    </motion.div>
-  </div>
-);
-
-function AnimatedRoutes() {
+function PageRoutes() {
   const location = useLocation();
+  
+  // Reveal observer for animations
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    
+    return () => observer.disconnect();
+  }, [location.pathname]);
+
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
-        <Route path="/about" element={<PageTransition><About /></PageTransition>} />
-        <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
-        <Route
-          path="/hindi"
-          element={
-            <PageTransition>
-              <LanguagePage
-                language="Hindi"
-                color="bg-hindi"
-                gradient="from-primary to-primary-light"
-                description="Experience the richness of Hindi voice artistry. Explore my extensive work in India's most widely spoken language."
-                icon="🇮🇳"
-              />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/english"
-          element={
-            <PageTransition>
-              <LanguagePage
-                language="English"
-                color="bg-english"
-                gradient="from-secondary to-secondary-light"
-                description="Professional English voice work for global audiences. Delivering clarity and engagement in every project."
-                icon="🌍"
-              />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/tamil"
-          element={
-            <PageTransition>
-              <LanguagePage
-                language="Tamil"
-                color="bg-tamil"
-                gradient="from-primary to-secondary"
-                description="Authentic Tamil voice artistry celebrating the beauty of this ancient language. Bringing stories to life for Tamil audiences."
-                icon="🎭"
-              />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/malayalam"
-          element={
-            <PageTransition>
-              <LanguagePage
-                language="Malayalam"
-                color="bg-malayalam"
-                gradient="from-secondary to-primary"
-                description="Capturing the melodic essence of Malayalam in every project. Connecting with audiences from God's Own Country."
-                icon="🌴"
-              />
-            </PageTransition>
-          }
-        />
-        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-      </Routes>
-    </AnimatePresence>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/portfolio" element={<Portfolio />} />
+      <Route
+        path="/hindi"
+        element={
+          <LanguagePage
+            language="Hindi"
+            gradient="from-[#ef4444] to-transparent"
+            description="Experience the richness of Hindi voice artistry. Explore my extensive work in India's most widely spoken language."
+            icon={Mic2}
+          />
+        }
+      />
+      <Route
+        path="/english"
+        element={
+          <LanguagePage
+            language="English"
+            gradient="from-[#3b82f6] to-transparent"
+            description="Professional English voice work for global audiences. Delivering clarity and engagement in every project."
+            icon={Globe}
+          />
+        }
+      />
+      <Route
+        path="/tamil"
+        element={
+          <LanguagePage
+            language="Tamil"
+            gradient="from-[#22c55e] to-transparent"
+            description="Authentic Tamil voice artistry celebrating the beauty of this ancient language. Bringing stories to life for Tamil audiences."
+            icon={Film}
+          />
+        }
+      />
+      <Route
+        path="/malayalam"
+        element={
+          <LanguagePage
+            language="Malayalam"
+            gradient="from-[#f59e0b] to-transparent"
+            description="Capturing the melodic essence of Malayalam in every project. Connecting with audiences from God's Own Country."
+            icon={Headphones}
+          />
+        }
+      />
+      <Route path="/contact" element={<Contact />} />
+    </Routes>
   );
 }
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-background text-foreground relative selection:bg-primary/20 leading-relaxed tracking-normal transition-colors duration-500">
+      <div className="min-h-screen bg-background text-foreground relative selection:bg-primary/20 leading-relaxed tracking-normal">
         <ScrollToTop />
-        <div className="noise-overlay opacity-[0.03]" />
-        <AnimatedBackground />
+        <MusicalCursor />
         <Navbar />
         <main className="relative" style={{ zIndex: 1 }}>
-          <AnimatedRoutes />
+          <PageRoutes />
         </main>
         <Footer />
       </div>

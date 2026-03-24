@@ -122,6 +122,14 @@ nav .logo-tagline{font-size:.65rem!important;font-weight:300!important;color:var
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
 /* ── SHARED ── */
 section{position:relative;z-index:2}

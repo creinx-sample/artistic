@@ -12,6 +12,13 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    // Clear form
+    setFormState({
+      name: '',
+      email: '',
+      service: '',
+      message: '',
+    });
     setTimeout(() => setSubmitted(false), 5000);
   };
 
@@ -25,7 +32,7 @@ export default function Contact() {
       <div className="contact-accent" style={{ bottom: '25%', left: '15%', animationDelay: '2s' }}>♯</div>
       <div className="contact-accent" style={{ bottom: '15%', right: '25%', animationDelay: '0.5s', fontSize: '1.2rem' }}>𝄢</div>
 
-      <section id="contact" style={{ padding: '15rem 5% 2rem', maxWidth: '1200px', margin: '0 auto' }}>
+      <section id="contact" style={{ padding: '15rem 5% 2rem', maxWidth: '1600px', margin: '0 auto', width: '100%' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', width: '100%' }}>
           <div className="reveal">
             <div className="section-label">Get In Touch</div>
@@ -37,25 +44,25 @@ export default function Contact() {
           </div>
 
           <div className="contact-grid-system">
-            <div className="reveal d2">
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.2rem' }}>
-                <div className="contact-glass-card" style={{ padding: '1.5rem' }}>
-                  <div className="section-label" style={{ marginBottom: '0.6rem', fontSize: '0.65rem' }}>Email Me</div>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--gold)', fontFamily: 'var(--fb)', wordBreak: 'break-all', opacity: 0.9 }}>sujavagishwari.voiceartist@gmail.com</div>
+            <div className="reveal d2" style={{ width: '100%' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem', width: '100%' }}>
+                <div className="contact-glass-card" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '180px' }}>
+                  <div className="section-label" style={{ marginBottom: '1.2rem', fontSize: '0.75rem' }}>Email Me</div>
+                  <div style={{ fontSize: '1.1rem', color: 'var(--gold)', fontFamily: 'var(--fb)', wordBreak: 'break-all', opacity: 0.9 }}>sujavagishwari.voiceartist@gmail.com</div>
                 </div>
-                <div className="contact-glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <div className="section-label" style={{ marginBottom: '0.6rem', fontSize: '0.65rem' }}>Call / WhatsApp</div>
-                  <div style={{ fontSize: '1.1rem', color: 'var(--gold)', fontFamily: 'var(--fd)' }}>+91 89391 79351</div>
+                <div className="contact-glass-card" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '180px' }}>
+                  <div className="section-label" style={{ marginBottom: '1.2rem', fontSize: '0.75rem' }}>Call / WhatsApp</div>
+                  <div style={{ fontSize: '1.8rem', color: 'var(--gold)', fontFamily: 'var(--fd)' }}>+91 89391 79351</div>
                 </div>
-                <div className="contact-glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <div className="section-label" style={{ marginBottom: '0.6rem', fontSize: '0.65rem' }}>Location</div>
-                  <div style={{ fontSize: '1.1rem', color: 'var(--gold)', fontFamily: 'var(--fd)' }}>Chennai, Tamil Nadu</div>
+                <div className="contact-glass-card" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '180px' }}>
+                  <div className="section-label" style={{ marginBottom: '1.2rem', fontSize: '0.75rem' }}>Location</div>
+                  <div style={{ fontSize: '1.8rem', color: 'var(--gold)', fontFamily: 'var(--fd)' }}>Chennai, Tamil Nadu</div>
                 </div>
               </div>
             </div>
 
-            <div className="reveal d3">
-              <div className="contact-glass-card" style={{ padding: '2.5rem' }}>
+            <div className="reveal d3" style={{ width: '100%' }}>
+              <div className="contact-glass-card" style={{ padding: '4rem' }}>
                 <form 
                   onSubmit={handleSubmit}
                   style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
@@ -96,10 +103,10 @@ export default function Contact() {
                   />
                   <button 
                     type="submit" 
-                    className="btn-primary" 
+                    className={`btn-primary ${submitted ? 'btn-success' : ''}`} 
                     style={{ width: '100%', justifyContent: 'center', height: '3.5rem', fontSize: '1.1rem' }}
                   >
-                    {submitted ? 'Message Sent!' : 'Send Message'}
+                    {submitted ? '✓ Message Sent Successfully!' : 'Send Message'}
                   </button>
                 </form>
               </div>

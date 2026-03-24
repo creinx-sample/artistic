@@ -81,12 +81,14 @@ nav .logo-tagline{font-size:.65rem!important;font-weight:300!important;color:var
 .badge-text-gold{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light);font-weight:600;text-shadow:0 0 10px rgba(200,150,74,.3)}
 
 .hero-title{font-family:var(--fd);font-size:clamp(4rem,10vw,10.5rem);font-weight:300;line-height:.95;color:var(--cream);opacity:0;animation:slideUp .9s .5s forwards}
-.hero-title .name-first{color:var(--gold-pale);display:inline-block}
-.hero-title .accent{color:var(--gold);opacity:.8;display:inline-block;margin-left:20px}
+.hero-title .name-first{color:#E5D5B0;display:inline-block;opacity:0.9;text-shadow:0 0 20px rgba(229,213,176,0.1)}
+.hero-title .accent{color:#C5A02A;opacity:1;display:inline-block;margin-left:20px;text-shadow:0 0 40px rgba(197,160,42,0.3)}
 .hero-desc{margin-top:2.2rem;font-size:1.1rem;line-height:1.7;color:rgba(232,224,213,.8);max-width:540px;font-weight:300;opacity:0;animation:slideUp .9s .7s forwards}
 .hero-actions{margin-top:3.5rem;display:flex;gap:1.5rem;flex-wrap:wrap;opacity:0;animation:slideUp .9s .9s forwards}
 .btn-primary{padding:1.1rem 2.8rem;background:var(--gold);color:var(--dark);border:none;border-radius:50px;font-family:var(--fb);font-size:.82rem;font-weight:600;letter-spacing:.1em;cursor:none;text-decoration:none;transition:all .3s;display:flex;align-items:center;gap:.8rem}
 .btn-primary:hover{background:var(--gold-light);transform:scale(1.05);box-shadow:0 10px 30px rgba(200,150,74,.4)}
+.btn-primary:active{transform:scale(.98)}
+.btn-success{background:#2ecc71!important;color:#fff!important;pointer-events:none}
 .btn-outline{padding:1.1rem 2.8rem;border:1px solid rgba(255,255,255,.2);color:var(--cream);background:transparent;border-radius:50px;font-family:var(--fb);font-size:.82rem;font-weight:400;letter-spacing:.1em;cursor:none;text-decoration:none;transition:all .3s}
 .btn-outline:hover{border-color:var(--gold);background:rgba(200,150,74,.05);color:var(--gold)}
 
@@ -415,13 +417,13 @@ footer{background:linear-gradient(to bottom, #061312, #040c0b); position:relativ
 
 .contact-grid-system {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: 0.8fr 1.2fr;
   gap: 4rem;
   width: 100%;
-  align-items: start;
+  align-items: stretch;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
   .contact-grid-system {
     grid-template-columns: 1fr;
     gap: 3rem;

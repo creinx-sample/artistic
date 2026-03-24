@@ -125,10 +125,10 @@ export default function Home() {
           </p>
           
           <div className="hero-actions">
-            <a href="#portfolio" className="btn-primary">
+            <Link to="/portfolio" className="btn-primary">
               <span style={{ fontSize: '1.2rem' }}>▶</span> Explore My Work <span>→</span>
-            </a>
-            <a href="#contact" className="btn-outline">Get In Touch</a>
+            </Link>
+            <Link to="/contact" className="btn-outline">Get In Touch</Link>
           </div>
         </div>
 

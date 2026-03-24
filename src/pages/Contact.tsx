@@ -32,13 +32,13 @@ export default function Contact() {
       <div className="contact-accent" style={{ bottom: '25%', left: '15%', animationDelay: '2s' }}>♯</div>
       <div className="contact-accent" style={{ bottom: '15%', right: '25%', animationDelay: '0.5s', fontSize: '1.2rem' }}>𝄢</div>
 
-      <section id="contact" style={{ padding: '15rem 5% 2rem', maxWidth: '1600px', margin: '0 auto', width: '100%' }}>
+      <section id="contact" style={{ padding: '15rem 3% 2rem', maxWidth: '100%', margin: '0 auto', width: '100%' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', width: '100%' }}>
           <div className="reveal">
             <div className="section-label">Get In Touch</div>
             <h2 className="section-title d1" style={{ marginBottom: '1.5rem' }}>Ready to <em>collaborate?</em></h2>
             
-            <p className="about-bio d2" style={{ fontSize: '1.2rem', opacity: 0.9, maxWidth: '800px' }}>
+            <p className="about-bio d2" style={{ fontSize: '1.2rem', opacity: 0.9, width: '100%' }}>
               Whether you have a script ready for dubbing, a podcast idea that needs a voice, or just want to discuss a creative project — my door is always open.
             </p>
           </div>

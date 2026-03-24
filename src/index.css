@@ -78,10 +78,11 @@ nav .logo-tagline{font-size:.65rem!important;font-weight:300!important;color:var
 .hero-badge{display:inline-flex;align-items:center;gap:.8rem;background:rgba(200,150,74,.1);border-radius:50px;padding:.5rem 1.5rem .5rem .8rem;margin-bottom:2.5rem;opacity:0;animation:slideUp .8s .3s forwards}
 .badge-wave{display:flex;align-items:center;gap:2px;height:120%}
 .bw-line{width:2px;background:var(--gold);border-radius:1px}
-.badge-text-gold{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.badge-text-gold{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light);font-weight:600;text-shadow:0 0 10px rgba(200,150,74,.3)}
 
 .hero-title{font-family:var(--fd);font-size:clamp(4rem,10vw,10.5rem);font-weight:300;line-height:.95;color:var(--cream);opacity:0;animation:slideUp .9s .5s forwards}
-.hero-title .accent{color:var(--gold);opacity:.6;display:inline-block;margin-left:20px}
+.hero-title .name-first{color:var(--gold-pale);display:inline-block}
+.hero-title .accent{color:var(--gold);opacity:.8;display:inline-block;margin-left:20px}
 .hero-desc{margin-top:2.2rem;font-size:1.1rem;line-height:1.7;color:rgba(232,224,213,.8);max-width:540px;font-weight:300;opacity:0;animation:slideUp .9s .7s forwards}
 .hero-actions{margin-top:3.5rem;display:flex;gap:1.5rem;flex-wrap:wrap;opacity:0;animation:slideUp .9s .9s forwards}
 .btn-primary{padding:1.1rem 2.8rem;background:var(--gold);color:var(--dark);border:none;border-radius:50px;font-family:var(--fb);font-size:.82rem;font-weight:600;letter-spacing:.1em;cursor:none;text-decoration:none;transition:all .3s;display:flex;align-items:center;gap:.8rem}
@@ -296,6 +297,8 @@ footer{background:linear-gradient(to bottom, #061312, #040c0b); position:relativ
 .footer-bottom-links{display:flex;gap:2rem}
 .footer-bottom-links a{font-size:.72rem;color:var(--text-muted);text-decoration:none;transition:color .3s}
 .footer-bottom-links a:hover{color:var(--gold)}
+.dev-watermark{font-size:.65rem;color:rgba(255,255,255,0.2);letter-spacing:.1em;text-transform:uppercase;margin-top:1.5rem;text-align:center;width:100%}
+.dev-watermark strong{color:rgba(200,150,74,0.4);font-weight:500}
 
 /* ── AUDIO MODAL ── */
 .modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(10,20,20,.85);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}

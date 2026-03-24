@@ -117,7 +117,7 @@ export default function Home() {
           </div>
           
           <h1 className="hero-title">
-            Suja <span className="accent">Sambandam</span>
+            <span className="name-first">Suja</span> <span className="accent">Sambandam</span>
           </h1>
           
           <p className="hero-desc">

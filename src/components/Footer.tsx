@@ -24,6 +24,9 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} Suja Sambandam. All rights reserved. <br />
           <span style={{ opacity: 0.4, fontSize: '0.75rem' }}>Crafted with passion for voice</span>
         </div>
+        <div className="dev-watermark">
+          Developed by <strong>Creinx</strong>
+        </div>
       </div>
     </footer>
   );

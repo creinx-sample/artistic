@@ -117,7 +117,8 @@ export default function Home() {
           </div>
           
           <h1 className="hero-title">
-            <span className="name-first">Suja</span> <span className="accent">Sambandam</span>
+            <span className="name-first">Suja</span>
+            <span className="accent">Sambandam</span>
           </h1>
           
           <p className="hero-desc">
@@ -139,15 +140,6 @@ export default function Home() {
             <div className="soundwave-ring"></div>
             <div className="mic-icon">🎙️</div>
           </div>
-          <div className="eq-wrap">
-            {eqBars.map((h, i) => (
-              <div 
-                key={i} 
-                className="eq-bar" 
-                style={{ height: `${h}px`, animationDuration: `${0.45 + Math.random() * 0.9}s`, animationDelay: `${(i * 0.07).toFixed(2)}s` }} 
-              />
-            ))}
-          </div>
         </div>
 
         <svg className="hero-wave-svg" height="120" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -155,6 +147,15 @@ export default function Home() {
           <path className="hw" d="M0,70 C200,30 400,110 600,60 C800,20 1000,80 1200,70" style={{ opacity: 0.6 }} />
           <path className="hw" d="M0,50 C250,90 500,20 750,65 C900,90 1100,40 1200,50" style={{ opacity: 0.4 }} />
         </svg>
+        <div className="hero-eq-mid">
+          {eqBars.map((h, i) => (
+            <div 
+              key={i} 
+              className="eq-bar" 
+              style={{ height: `${h}px`, animationDuration: `${0.45 + Math.random() * 0.9}s`, animationDelay: `${(i * 0.07).toFixed(2)}s` }} 
+            />
+          ))}
+        </div>
         <div className="hero-scroll">
           <div className="mouse-icon">
             <div className="mouse-wheel"></div>

@@ -19,7 +19,7 @@ export default function Footer() {
       )}
 
       <div className="footer-bottom" style={{ padding: '3rem 5%', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-        <Link to="/" className="footer-logo">𝄞 SujaVoices</Link>
+        <Link to="/" className="footer-logo">♬ SujaVoices</Link>
         <div className="footer-copy" style={{ textAlign: 'right' }}>
           &copy; {new Date().getFullYear()} Suja Sambandam. All rights reserved. <br />
           <span style={{ opacity: 0.4, fontSize: '0.75rem' }}>Crafted with passion for voice</span>

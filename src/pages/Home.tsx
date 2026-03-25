@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const SYMBOLS = ['♩', '♪', '♫', '♬', '♭', '♯', '𝄞'];
+const SYMBOLS = ['♩', '♪', '♫', '♬', '♭', '♯'];
 
 export default function Home() {
   const [eqBars, setEqBars] = useState<number[]>([]);
@@ -99,7 +99,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <div className="clef-wm" style={{ right: '3%', top: '50%', transform: 'translateY(-50%)' }}>𝄞</div>
+        <div className="clef-wm" style={{ right: '3%', top: '50%', transform: 'translateY(-50%)' }}>♬</div>
 
         <div className="hero-glow-lines">
           <div className="glow-line gl-1"></div>
@@ -122,7 +122,7 @@ export default function Home() {
           </h1>
           
           <p className="hero-desc">
-            Professional Voice Artist specializing in dubbing and podcasting across Tamil, Hindi, English, and Malayalam. Bringing characters to life with 15+ years of industry experience.
+            Professional Voice Artist specializing in dubbing and podcasting across Tamil, Hindi, English, and Malayalam. Bringing characters to life with authenticity and precision.
           </p>
           
           <div className="hero-actions">
@@ -205,14 +205,14 @@ export default function Home() {
         <div>
           <div className="section-label reveal">About Me</div>
           <h2 className="section-title reveal d1">The voice<br />behind <em>the story</em></h2>
-          <p className="about-bio reveal d2">I'm <strong>Suja Sambandam</strong>, a professional voice artist with over <strong>12 years of experience</strong> bringing scripts to life. Trained in the nuances of four languages, I bring <strong>tonal precision and emotional authenticity</strong> to every project, recorded from my professional studio with high-grade gear.</p>
+          <p className="about-bio reveal d2">I'm <strong>Suja Sambandam</strong>, a professional voice artist dedicated to bringing scripts to life. Trained in the nuances of four languages, I bring <strong>tonal precision and emotional authenticity</strong> to every project, recorded from my professional studio with high-grade gear.</p>
           <div className="reveal d3" style={{ marginTop: '2rem' }}>
             <Link to="/about" className="btn-primary">Read Full Profile</Link>
           </div>
         </div>
       </section>
 
-      <div className="musical-divider"><div className="divider-line"></div><span className="divider-note">𝅘𝅥𝅮</span><span className="divider-note" style={{ fontSize: '1rem' }}>♩</span><span className="divider-note">𝄞</span><span className="divider-note" style={{ fontSize: '1rem' }}>♩</span><span className="divider-note">𝅘𝅥𝅮</span><div className="divider-line"></div></div>
+      <div className="musical-divider"><div className="divider-line"></div><span className="divider-note">𝅘𝅥𝅮</span><span className="divider-note" style={{ fontSize: '1rem' }}>♩</span><span className="divider-note">♬</span><span className="divider-note" style={{ fontSize: '1rem' }}>♩</span><span className="divider-note">𝅘𝅥𝅮</span><div className="divider-line"></div></div>
 
       {/* LANGUAGES */}
       <section id="languages">

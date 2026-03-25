@@ -6,9 +6,10 @@ interface LanguagePageProps {
   gradient?: string;
   description: string;
   icon?: any;
+  setTrack: (track: any) => void;
 }
 
-export default function LanguagePage({ language, description }: LanguagePageProps) {
+export default function LanguagePage({ language, description, setTrack }: LanguagePageProps) {
   const works = getWorksByLanguage(language as any);
 
   return (
@@ -37,7 +38,7 @@ export default function LanguagePage({ language, description }: LanguagePageProp
             <div 
               key={work.id} 
               className="file-item"
-              onClick={() => console.log('Play:', work.audio)}
+              onClick={() => setTrack({ url: work.audio, title: work.filename, subtitle: `${language} Archive • ${work.year}` })}
               style={{ 
                 display: 'flex', 
                 alignItems: 'center', 

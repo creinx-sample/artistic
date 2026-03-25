@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-const SYMBOLS = ['♩', '♪', '♫', '♬', '♭', '♯', '𝄞'];
+const SYMBOLS = ['♩', '♪', '♫', '♬', '♭', '♯'];
 
 export default function MusicalCursor() {
   const mcRef = useRef<HTMLDivElement>(null);

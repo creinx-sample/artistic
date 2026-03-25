@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import MusicalCursor from './components/MusicalCursor';
+import AudioPlayer from './components/AudioPlayer';
 import { Mic2, Headphones, Film, Globe } from 'lucide-react';
 
 import Home from './pages/Home';
@@ -19,7 +20,7 @@ function ScrollToTop() {
   return null;
 }
 
-function PageRoutes() {
+function PageRoutes({ setTrack }: { setTrack: (track: any) => void }) {
   const location = useLocation();
   
   // Reveal observer for animations
@@ -41,7 +42,7 @@ function PageRoutes() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
-      <Route path="/portfolio" element={<Portfolio />} />
+      <Route path="/portfolio" element={<Portfolio setTrack={setTrack} />} />
       <Route
         path="/hindi"
         element={
@@ -50,6 +51,7 @@ function PageRoutes() {
             gradient="from-[#ef4444] to-transparent"
             description="Experience the richness of Hindi voice artistry. Explore my extensive work in India's most widely spoken language."
             icon={Mic2}
+            setTrack={setTrack}
           />
         }
       />
@@ -61,6 +63,7 @@ function PageRoutes() {
             gradient="from-[#3b82f6] to-transparent"
             description="Professional English voice work for global audiences. Delivering clarity and engagement in every project."
             icon={Globe}
+            setTrack={setTrack}
           />
         }
       />
@@ -72,6 +75,7 @@ function PageRoutes() {
             gradient="from-[#22c55e] to-transparent"
             description="Authentic Tamil voice artistry celebrating the beauty of this ancient language. Bringing stories to life for Tamil audiences."
             icon={Film}
+            setTrack={setTrack}
           />
         }
       />
@@ -83,6 +87,7 @@ function PageRoutes() {
             gradient="from-[#f59e0b] to-transparent"
             description="Capturing the melodic essence of Malayalam in every project. Connecting with audiences from God's Own Country."
             icon={Headphones}
+            setTrack={setTrack}
           />
         }
       />
@@ -92,6 +97,8 @@ function PageRoutes() {
 }
 
 function App() {
+  const [activeTrack, setActiveTrack] = useState<{ url: string; title: string; subtitle: string } | null>(null);
+
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-background text-foreground relative selection:bg-primary/20 leading-relaxed tracking-normal">
@@ -99,9 +106,10 @@ function App() {
         <MusicalCursor />
         <Navbar />
         <main className="relative" style={{ zIndex: 1 }}>
-          <PageRoutes />
+          <PageRoutes setTrack={setActiveTrack} />
         </main>
         <Footer />
+        <AudioPlayer track={activeTrack} onClose={() => setActiveTrack(null)} />
       </div>
     </BrowserRouter>
   );

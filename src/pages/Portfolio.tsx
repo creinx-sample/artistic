@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { works, type Work } from '../data/works';
 
-export default function Portfolio() {
+export default function Portfolio({ setTrack }: { setTrack: (track: any) => void }) {
   const [langFilter, setLangFilter] = useState<'all' | Work['language']>('all');
 
   const filteredWorks = works.filter((work) => {
@@ -56,7 +56,7 @@ export default function Portfolio() {
             <div 
               key={work.id} 
               className="file-item"
-              onClick={() => console.log('Play:', work.audio)}
+              onClick={() => setTrack({ url: work.audio, title: work.filename, subtitle: `${work.language} • ${work.year}` })}
               style={{ 
                 display: 'flex', 
                 alignItems: 'center', 

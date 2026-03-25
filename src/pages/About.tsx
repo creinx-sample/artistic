@@ -74,7 +74,7 @@ export default function About() {
           </div>
           
           <p className="about-bio reveal d2">
-            Professional voice artist with over <strong>12 years of experience</strong> bringing scripts to life through tonal precision and emotional authenticity.
+            Professional voice artist dedicated to bringing scripts to life through tonal precision and emotional authenticity.
           </p>
           <div style={{ marginTop: '3rem' }}>
             <h3 className="section-label reveal d3">Language Proficiency</h3>

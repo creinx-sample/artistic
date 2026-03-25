@@ -93,13 +93,14 @@ nav .logo-tagline{font-size:.65rem!important;font-weight:300!important;color:var
 .btn-outline:hover{border-color:var(--gold);background:rgba(200,150,74,.05);color:var(--gold)}
 
 .global-wave-container{position:fixed;bottom:0;left:0;width:100%;z-index:100;pointer-events:none;transition:all .8s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;align-items:center;justify-content:center}
-.global-wave-container.hero-mode{height:200px;opacity:.4}
+.global-wave-container.hero-mode{height:200px;opacity:.5}
 .global-wave-container.subtle-mode{height:60px;opacity:.15;filter:blur(2px)}
-.wave-track{display:flex;align-items:flex-end;gap:1px;width:100%;height:50%;overflow:hidden;mask-image:linear-gradient(to right,transparent,black 15%,black 85%,transparent)}
-.wave-track.mirrored{align-items:flex-start;transform:scaleY(-1);opacity:.4}
-.wave-bar{flex:1;background:var(--gold);min-width:1px;animation:waveDance 1.5s ease-in-out infinite;transform-origin:bottom}
+.global-wave-container.paused .wave-bar { animation-play-state: paused; opacity: 0.3; }
+.wave-track{display:flex;align-items:flex-end;gap:1.5px;width:100%;height:50%;overflow:hidden;mask-image:linear-gradient(to right,transparent,black 15%,black 85%,transparent)}
+.wave-track.mirrored{align-items:flex-start;transform:scaleY(-1);opacity:.6;height:100%;margin-top: -20px;}
+.wave-bar{flex:1;background:var(--gold);min-width:2px;animation:waveDance 1.5s ease-in-out infinite;transform-origin:bottom}
 .mirrored .wave-bar{transform-origin:top}
-@keyframes waveDance{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1.2)}}
+@keyframes waveDance{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1.3)}}
 
 .note-visual-wrap{position:absolute;top:-80px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;z-index:10}
 .hero-note-main{font-size:4rem;color:var(--gold);opacity:.9;filter:drop-shadow(0 0 25px rgba(200,150,74,.5));z-index:2;animation:note-float 3s ease-in-out infinite}

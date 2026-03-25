@@ -4,15 +4,10 @@ import { Link } from 'react-router-dom';
 const SYMBOLS = ['♩', '♪', '♫', '♬', '♭', '♯'];
 
 export default function Home() {
-  const [eqBars, setEqBars] = useState<number[]>([]);
   const [heroNotes, setHeroNotes] = useState<{ id: number; symbol: string; left: string; size: string; duration: string; delay: string }[]>([]);
   const [particles, setParticles] = useState<{ id: number; left: string; size: string; duration: string; delay: string }[]>([]);
 
   useEffect(() => {
-    // EQ bars
-    const bars = Array.from({ length: 48 }, () => 15 + Math.random() * 70);
-    setEqBars(bars);
-
     // Hero notes
     const notes = Array.from({ length: 18 }, (_, i) => ({
       id: i,

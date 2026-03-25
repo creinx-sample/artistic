@@ -10,7 +10,7 @@ export default function Home() {
 
   useEffect(() => {
     // EQ bars
-    const bars = Array.from({ length: 22 }, () => 10 + Math.random() * 55);
+    const bars = Array.from({ length: 48 }, () => 15 + Math.random() * 70);
     setEqBars(bars);
 
     // Hero notes
@@ -148,11 +148,17 @@ export default function Home() {
           <path className="hw" d="M0,50 C250,90 500,20 750,65 C900,90 1100,40 1200,50" style={{ opacity: 0.4 }} />
         </svg>
         <div className="hero-eq-mid">
+          <div className="note-visual-wrap">
+            <div className="note-waves">
+              <span></span><span></span><span></span>
+            </div>
+            <div className="hero-note-main">♬</div>
+          </div>
           {eqBars.map((h, i) => (
             <div 
               key={i} 
               className="eq-bar" 
-              style={{ height: `${h}px`, animationDuration: `${0.45 + Math.random() * 0.9}s`, animationDelay: `${(i * 0.07).toFixed(2)}s` }} 
+              style={{ height: `${h}px`, animationDuration: `${0.45 + Math.random() * 0.9}s`, animationDelay: `${(i * 0.05).toFixed(2)}s` }} 
             />
           ))}
         </div>

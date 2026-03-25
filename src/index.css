@@ -300,8 +300,12 @@ footer{background:linear-gradient(to bottom, #061312, #040c0b); position:relativ
 .footer-bottom-links{display:flex;gap:2rem}
 .footer-bottom-links a{font-size:.72rem;color:var(--text-muted);text-decoration:none;transition:color .3s}
 .footer-bottom-links a:hover{color:var(--gold)}
-.dev-watermark{font-size:.65rem;color:rgba(255,255,255,0.2);letter-spacing:.1em;text-transform:uppercase;margin-top:1.5rem;text-align:center;width:100%}
-.dev-watermark strong{color:rgba(200,150,74,0.4);font-weight:500}
+.dev-watermark{font-size:.65rem;color:rgba(255,255,255,0.2);letter-spacing:.1em;text-transform:uppercase;margin-top:2.5rem;text-align:center;width:100%;display:flex;align-items:center;justify-content:center;gap:8px}
+.creinx-link{color:rgba(200,150,74,0.4);font-weight:600;text-decoration:none!important;transition:all .3s ease;position:relative;display:inline-flex;align-items:center;gap:6px}
+.creinx-link:hover{color:var(--gold);transform:translateY(-1px)}
+.creinx-link::after{content:'';width:12px;height:12px;background:url("https://www.svgrepo.com/show/501168/audio-wave.svg") center/contain no-repeat;filter:invert(0.7) sepia(1) saturate(3) hue-rotate(10deg);opacity:.3;transition:all .3s ease}
+.creinx-link:hover::after{opacity:1;filter:invert(0.5) sepia(1) saturate(5) hue-rotate(10deg);animation:creinx-pulse 1s ease-in-out infinite}
+@keyframes creinx-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
 
 /* ── AUDIO MODAL ── */
 .modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(10,20,20,.85);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}

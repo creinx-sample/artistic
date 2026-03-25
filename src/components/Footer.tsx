@@ -25,7 +25,7 @@ export default function Footer() {
           <span style={{ opacity: 0.4, fontSize: '0.75rem' }}>Crafted with passion for voice</span>
         </div>
         <div className="dev-watermark">
-          Developed by <strong>Creinx</strong>
+          Developed by <a href="https://www.creinx.com/" target="_blank" rel="noopener noreferrer" className="creinx-link">Creinx</a>
         </div>
       </div>
     </footer>

@@ -25,7 +25,16 @@ export default function Footer() {
           <span style={{ opacity: 0.4, fontSize: '0.75rem' }}>Crafted with passion for voice</span>
         </div>
         <div className="dev-watermark">
-          Developed by <a href="https://www.creinx.com/" target="_blank" rel="noopener noreferrer" className="creinx-link">Creinx</a>
+          Developed by 
+          <a href="https://www.creinx.com/" target="_blank" rel="noopener noreferrer" className="creinx-link">
+            Creinx
+            <div className="creinx-bars">
+              <div className="creinx-bar" style={{ animationDelay: '0s' }}></div>
+              <div className="creinx-bar" style={{ animationDelay: '0.2s' }}></div>
+              <div className="creinx-bar" style={{ animationDelay: '0.1s' }}></div>
+              <div className="creinx-bar" style={{ animationDelay: '0.3s' }}></div>
+            </div>
+          </a>
         </div>
       </div>
     </footer>

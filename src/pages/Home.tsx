@@ -152,13 +152,16 @@ export default function Home() {
             <div className="note-waves">
               <span></span><span></span><span></span>
             </div>
+            <div className="note-trails">
+              {[...Array(5)].map((_, i) => <div key={i} className="trail-line" style={{ animationDelay: `${i * 0.1}s`, top: `${i * 8}px` }}></div>)}
+            </div>
             <div className="hero-note-main">♬</div>
           </div>
           {eqBars.map((h, i) => (
             <div 
               key={i} 
-              className="eq-bar" 
-              style={{ height: `${h}px`, animationDuration: `${0.45 + Math.random() * 0.9}s`, animationDelay: `${(i * 0.05).toFixed(2)}s` }} 
+              className="eq-bar creative" 
+              style={{ height: `${h}px`, animationDuration: `${0.6 + Math.random() * 0.8}s`, animationDelay: `${(i * 0.04).toFixed(2)}s` }} 
             />
           ))}
         </div>

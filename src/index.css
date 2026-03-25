@@ -95,14 +95,20 @@ nav .logo-tagline{font-size:.65rem!important;font-weight:300!important;color:var
 /* EQ */
 .hero-visual{position:absolute;right:5%;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:2.5rem;opacity:0;animation:fadeIn 1.2s 1s forwards}
 .eq-wrap{display:flex;align-items:flex-end;gap:4px;height:200px}
-.hero-eq-mid{position:absolute;bottom:10%;left:50%;transform:translateX(-50%);display:flex;align-items:flex-end;justify-content:center;gap:4px;height:120px;z-index:5;pointer-events:none;opacity:.6}
-.eq-bar{width:4px;border-radius:2px;background:linear-gradient(to top,var(--gold),rgba(200,150,74,0.1));animation:eqdance ease-in-out infinite;box-shadow:0 0 10px rgba(200,150,74,0.1)}
-@keyframes eqdance{0%,100%{transform:scaleY(.2)}50%{transform:scaleY(1.3)}}
+.hero-eq-mid{position:absolute;bottom:10%;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:3px;height:160px;z-index:5;pointer-events:none;opacity:.8}
+.eq-bar.creative{width:4px;border-radius:2px;background:linear-gradient(to bottom,transparent,var(--gold) 50%,transparent);animation:eqcreative ease-in-out infinite;transform-origin:center;box-shadow:0 0 15px rgba(200,150,74,.2)}
+@keyframes eqcreative{0%,100%{transform:scaleY(.2);opacity:.4}50%{transform:scaleY(1.4);opacity:1}}
 
-.note-visual-wrap{position:absolute;top:-60px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center}
-.hero-note-main{font-size:3.5rem;color:var(--gold);opacity:.8;filter:drop-shadow(0 0 20px rgba(200,150,74,0.4));z-index:2}
-.note-waves{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100px;height:100px;z-index:1}
-.note-waves span{position:absolute;inset:0;border:1.5px solid var(--gold);border-radius:50%;opacity:0;animation:notewave 3s linear infinite}
+.note-visual-wrap{position:absolute;top:-80px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;z-index:10}
+.hero-note-main{font-size:4rem;color:var(--gold);opacity:.9;filter:drop-shadow(0 0 25px rgba(200,150,74,.5));z-index:2;animation:note-float 3s ease-in-out infinite}
+@keyframes note-float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-15px) rotate(5deg)}}
+
+.note-trails{position:absolute;top:50%;right:30px;width:150px;height:40px;transform:translateY(-50%)}
+.trail-line{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(200,150,74,.3),transparent);animation:traildance 4s linear infinite}
+@keyframes traildance{0%{transform:translateX(50px) skewX(20deg);opacity:0}20%{opacity:.4}80%{opacity:.4}100%{transform:translateX(-100px) skewX(-20deg);opacity:0}}
+
+.note-waves{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:120px;height:120px;z-index:1}
+.note-waves span{position:absolute;inset:0;border:1px solid rgba(200,150,74,.4);border-radius:50%;opacity:0;animation:notewave 3s linear infinite}
 .note-waves span:nth-child(2){animation-delay:1s}
 .note-waves span:nth-child(3){animation-delay:2s}
 @keyframes notewave{0%{transform:scale(.5);opacity:.6}100%{transform:scale(2.5);opacity:0}}

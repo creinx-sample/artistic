@@ -147,24 +147,6 @@ export default function Home() {
           <path className="hw" d="M0,70 C200,30 400,110 600,60 C800,20 1000,80 1200,70" style={{ opacity: 0.6 }} />
           <path className="hw" d="M0,50 C250,90 500,20 750,65 C900,90 1100,40 1200,50" style={{ opacity: 0.4 }} />
         </svg>
-        <div className="hero-eq-mid">
-          <div className="note-visual-wrap">
-            <div className="note-waves">
-              <span></span><span></span><span></span>
-            </div>
-            <div className="note-trails">
-              {[...Array(5)].map((_, i) => <div key={i} className="trail-line" style={{ animationDelay: `${i * 0.1}s`, top: `${i * 8}px` }}></div>)}
-            </div>
-            <div className="hero-note-main">♬</div>
-          </div>
-          {eqBars.map((h, i) => (
-            <div 
-              key={i} 
-              className="eq-bar creative" 
-              style={{ height: `${h}px`, animationDuration: `${0.6 + Math.random() * 0.8}s`, animationDelay: `${(i * 0.04).toFixed(2)}s` }} 
-            />
-          ))}
-        </div>
         <div className="hero-scroll">
           <div className="mouse-icon">
             <div className="mouse-wheel"></div>

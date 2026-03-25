@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import MusicalCursor from './components/MusicalCursor';
 import AudioPlayer from './components/AudioPlayer';
+import GlobalVisualizer from './components/GlobalVisualizer';
 import { Mic2, Headphones, Film, Globe } from 'lucide-react';
 
 import Home from './pages/Home';
@@ -110,6 +111,7 @@ function App() {
         </main>
         <Footer />
         <AudioPlayer track={activeTrack} onClose={() => setActiveTrack(null)} />
+        <GlobalVisualizer />
       </div>
     </BrowserRouter>
   );

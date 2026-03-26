@@ -33,8 +33,10 @@ export default function GlobalVisualizer() {
     Array.from({ length: barsCount }, () => Math.floor(Math.random() * 80) + 10),
   []);
 
+  if (!isHome) return null;
+
   return (
-    <div className={`global-wave-container ${isHome ? 'hero-mode' : 'subtle-mode'} ${!isHeroVisible ? 'paused' : ''}`}>
+    <div className={`global-wave-container hero-mode ${!isHeroVisible ? 'hidden' : ''}`}>
       {/* Downward Waves (Bottom row) */}
       <div className="wave-track mirrored">
         {bars.map((h, i) => (

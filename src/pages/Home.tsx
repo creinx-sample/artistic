@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import HeroVisualizer from '../components/HeroVisualizer';
 
 const SYMBOLS = ['♩', '♪', '♫', '♬', '♭', '♯'];
 
@@ -147,6 +148,7 @@ export default function Home() {
             <div className="mouse-wheel"></div>
           </div>
         </div>
+        <HeroVisualizer />
       </section>
 
       {/* MARQUEE */}

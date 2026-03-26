@@ -47,15 +47,15 @@ export default function Contact() {
             <div className="reveal d2" style={{ width: '100%' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem', width: '100%' }}>
                 <div className="contact-glass-card" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '180px' }}>
-                  <div className="section-label" style={{ marginBottom: '1.2rem', fontSize: '0.75rem' }}>Email Me</div>
+                  <div className="section-label" style={{ marginBottom: '1.2rem' }}>Email Me</div>
                   <div className="contact-card-value">sujavagishwari.voiceartist@gmail.com</div>
                 </div>
                 <div className="contact-glass-card" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '180px' }}>
-                  <div className="section-label" style={{ marginBottom: '1.2rem', fontSize: '0.75rem' }}>Call / WhatsApp</div>
+                  <div className="section-label" style={{ marginBottom: '1.2rem' }}>Call / WhatsApp</div>
                   <div className="contact-card-value">+91 89391 79351</div>
                 </div>
                 <div className="contact-glass-card" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '180px' }}>
-                  <div className="section-label" style={{ marginBottom: '1.2rem', fontSize: '0.75rem' }}>Location</div>
+                  <div className="section-label" style={{ marginBottom: '1.2rem' }}>Location</div>
                   <div className="contact-card-value">Chennai, Tamil Nadu</div>
                 </div>
               </div>

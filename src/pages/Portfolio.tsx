@@ -40,13 +40,11 @@ export default function Portfolio({ setTrack }: { setTrack: (track: any) => void
                 padding: '0 0 1rem 0',
                 transition: 'all 0.4s ease',
                 position: 'relative',
-                fontFamily: 'var(--fb)'
+                fontFamily: 'var(--fb)',
+                fontWeight: langFilter === l.value ? '600' : '400'
               }}
             >
               {l.label}
-              {langFilter === l.value && (
-                <div style={{ position: 'absolute', bottom: '-1px', left: 0, width: '100%', height: '2px', background: 'var(--gold)' }} />
-              )}
             </button>
           ))}
         </div>

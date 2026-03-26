@@ -6,7 +6,7 @@ export default function GlobalVisualizer() {
   const isHome = location.pathname === '/';
   const [isHeroVisible, setIsHeroVisible] = useState(true);
   
-  // Track hero visibility to pause animation
+  // Track visibility to hide waves when scrolling past hero
   useEffect(() => {
     if (!isHome) {
       setIsHeroVisible(false);
@@ -14,16 +14,32 @@ export default function GlobalVisualizer() {
     }
 
     const hero = document.getElementById('hero');
+    const marquee = document.querySelector('.marquee-strip');
     if (!hero) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsHeroVisible(entry.isIntersecting);
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.target.classList.contains('marquee-strip')) {
+            // If the marquee enters the viewport at all, hide the waves
+            if (entry.isIntersecting) {
+              setIsHeroVisible(false);
+            } else if (entry.boundingClientRect.top > 0) {
+              // If marquee is below the viewport, we are back in the hero
+              setIsHeroVisible(true);
+            }
+          } else if (entry.target.id === 'hero' && !marquee) {
+            // Fallback if marquee is missing
+            setIsHeroVisible(entry.isIntersecting);
+          }
+        });
       },
-      { threshold: 0.1 }
+      { threshold: [0, 0.1] }
     );
 
     observer.observe(hero);
+    if (marquee) observer.observe(marquee);
+    
     return () => observer.disconnect();
   }, [isHome]);
 

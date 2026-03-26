@@ -54,7 +54,11 @@ nav .logo-tagline{font-size:.65rem!important;font-weight:300!important;color:var
 .nav-links{display:flex;align-items:center;gap:3rem;list-style:none}
 .nav-links a{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-main);font-weight:400;text-decoration:none;transition:color .3s;opacity:.8}
 .nav-links a:hover{color:var(--gold);opacity:1}
-.nav-cta{padding:.7rem 2rem;background:var(--gold);color:var(--dark)!important;border-radius:50px;font-size:.75rem!important;font-weight:600!important;letter-spacing:.1em!important;transition:all .3s!important;box-shadow:0 4px 15px rgba(200,150,74,.2)}
+.nav-cta{padding:.7rem 2rem;background:var(--gold);color:var(--dark)!important;border-radius:50px;font-size:.75rem!important;font-weight:600!important;letter-spacing:.1em!important;transition:all .3s!important;box-shadow:0 4px 15px rgba(200,150,74,.2);white-space:nowrap}
+.contact-card-value{color:var(--gold);font-family:var(--fd);line-height:1.2;transition:font-size 0.3s ease}
+@media (max-width: 600px) {
+  .contact-card-value { font-size: clamp(1rem, 4vw, 1.4rem) !important; }
+}
 .nav-cta:hover{background:var(--gold-light)!important;transform:translateY(-2px);box-shadow:0 8px 25px rgba(200,150,74,.4)}
 
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:none}

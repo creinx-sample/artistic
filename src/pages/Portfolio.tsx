@@ -1,17 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { works, type Work, type Category } from '../data/works';
-import CategoryBar from '../components/CategoryBar';
+import { works, type Work } from '../data/works';
 
 export default function Portfolio({ setTrack }: { setTrack: (track: any) => void }) {
   const navigate = useNavigate();
   const [langFilter, setLangFilter] = useState<'all' | Work['language']>('all');
-  const [catFilter, setCatFilter] = useState<'all' | Category>('all');
 
   const filteredWorks = works.filter((work) => {
     const matchLang = langFilter === 'all' || work.language === langFilter;
-    const matchCat = catFilter === 'all' || work.category === catFilter;
-    return matchLang && matchCat;
+    const notAudiobook = work.category !== 'Audiobooks';
+    return matchLang && notAudiobook;
   });
 
   const languages: Array<{ value: 'all' | Work['language']; label: string }> = [
@@ -36,10 +34,7 @@ export default function Portfolio({ setTrack }: { setTrack: (track: any) => void
         <div className="section-label reveal">Archives</div>
         <h2 className="section-title reveal d1" style={{ marginBottom: '2rem' }}>Voice <em>Repertoire</em></h2>
         
-        <CategoryBar 
-          activeCategory={catFilter} 
-          onCategoryChange={(cat) => setCatFilter(cat)} 
-        />
+
 
         {/* Premium Filters */}
         <div className="reveal d2" style={{ display: 'flex', gap: '2.5rem', flexWrap: 'wrap', marginTop: '3rem', marginBottom: '4rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '1.5rem', justifyContent: 'center' }}>

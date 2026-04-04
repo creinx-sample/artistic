@@ -46,7 +46,7 @@ export default function Footer() {
             
             <div style={{ display: 'flex', gap: '1rem', marginBottom: '2.5rem' }}>
               {socials.map((social) => (
-                <motion.a key={social.label} href={social.href} whileHover={{ y: -2 }} style={{ width: '2.5rem', height: '2.5rem', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--cream)', textDecoration: 'none' }}>
+                <motion.a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" whileHover={{ y: -2, scale: 1.1 }} style={{ width: '2.5rem', height: '2.5rem', borderRadius: '50%', background: 'rgba(200,150,74,0.15)', border: '1px solid rgba(200,150,74,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gold)', textDecoration: 'none', transition: 'all 0.3s ease' }}>
                   <social.icon size={16} />
                 </motion.a>
               ))}

@@ -63,7 +63,7 @@ export default function Portfolio({ setTrack }: { setTrack: (track: any) => void
           ))}
         </div>
 
-        <div key={`${langFilter}-${catFilter}`} className="file-list-container reveal d3">
+        <div key={langFilter} className="file-list-container reveal d3">
           {filteredWorks.map((work) => (
             <div 
               key={work.id} 

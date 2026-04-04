@@ -1,0 +1,471 @@
+commit bafff4196801510d447f5893035bfb8966093925
+Author: Sanjay Kumar <sanjaystar044@gmail.com>
+Date:   Wed Mar 25 21:29:29 2026 +0530
+
+    Polished animations: Mini-equalizer for Creinx and improved styles
+
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+index 859e869..1b16b0f 100644
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -25,7 +25,16 @@ export default function Footer() {
+           <span style={{ opacity: 0.4, fontSize: '0.75rem' }}>Crafted with passion for voice</span>
+         </div>
+         <div className="dev-watermark">
+-          Developed by <a href="https://www.creinx.com/" target="_blank" rel="noopener noreferrer" className="creinx-link">Creinx</a>
++          Developed by 
++          <a href="https://www.creinx.com/" target="_blank" rel="noopener noreferrer" className="creinx-link">
++            Creinx
++            <div className="creinx-bars">
++              <div className="creinx-bar" style={{ animationDelay: '0s' }}></div>
++              <div className="creinx-bar" style={{ animationDelay: '0.2s' }}></div>
++              <div className="creinx-bar" style={{ animationDelay: '0.1s' }}></div>
++              <div className="creinx-bar" style={{ animationDelay: '0.3s' }}></div>
++            </div>
++          </a>
+         </div>
+       </div>
+     </footer>
+
+commit 0e7981f09ad24d92be823d80def3d7f37c3fcc1d
+Author: Sanjay Kumar <sanjaystar044@gmail.com>
+Date:   Wed Mar 25 21:19:41 2026 +0530
+
+    Update Footer: Creinx link with animation
+
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+index 6319de9..859e869 100644
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -25,7 +25,7 @@ export default function Footer() {
+           <span style={{ opacity: 0.4, fontSize: '0.75rem' }}>Crafted with passion for voice</span>
+         </div>
+         <div className="dev-watermark">
+-          Developed by <strong>Creinx</strong>
++          Developed by <a href="https://www.creinx.com/" target="_blank" rel="noopener noreferrer" className="creinx-link">Creinx</a>
+         </div>
+       </div>
+     </footer>
+
+commit 0783842d361aa22f0ab5063c0e299cd49b049416
+Author: Sanjay Kumar <sanjaystar044@gmail.com>
+Date:   Wed Mar 25 21:13:27 2026 +0530
+
+    UI Cleanup: Remove underlines and implement functional audio player
+
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+index e465505..6319de9 100644
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -19,7 +19,7 @@ export default function Footer() {
+       )}
+ 
+       <div className="footer-bottom" style={{ padding: '3rem 5%', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+-        <Link to="/" className="footer-logo">𝄞 SujaVoices</Link>
++        <Link to="/" className="footer-logo">♬ SujaVoices</Link>
+         <div className="footer-copy" style={{ textAlign: 'right' }}>
+           &copy; {new Date().getFullYear()} Suja Sambandam. All rights reserved. <br />
+           <span style={{ opacity: 0.4, fontSize: '0.75rem' }}>Crafted with passion for voice</span>
+
+commit 82316c4aeefe6fd289ebb24dfb9fb0ffb4a136ef
+Author: Sanjay Kumar <sanjaystar044@gmail.com>
+Date:   Tue Mar 24 20:03:57 2026 +0530
+
+    Refined hero aesthetics, added developer watermark, and verified mobile responsiveness
+
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+index fea0600..e465505 100644
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -24,6 +24,9 @@ export default function Footer() {
+           &copy; {new Date().getFullYear()} Suja Sambandam. All rights reserved. <br />
+           <span style={{ opacity: 0.4, fontSize: '0.75rem' }}>Crafted with passion for voice</span>
+         </div>
++        <div className="dev-watermark">
++          Developed by <strong>Creinx</strong>
++        </div>
+       </div>
+     </footer>
+   );
+
+commit 75bdd1cd8d71ce029abe8118874a29811937b2f6
+Author: Sanjay Kumar <sanjaystar044@gmail.com>
+Date:   Tue Mar 24 18:17:04 2026 +0530
+
+    Refined portfolio with file-only list, integrated real boutique images, and added manual carousel controls
+
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+index 374ea7b..fea0600 100644
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -1,136 +1,28 @@
+-import { Link } from 'react-router-dom';
+-import { motion } from 'framer-motion';
+-import { Mic2, Mail, Phone, MapPin, Instagram } from 'lucide-react';
++import { Link, useLocation } from 'react-router-dom';
+ 
+ export default function Footer() {
+-  const languages = [
+-    { name: 'Hindi', path: '/hindi', color: 'text-hindi' },
+-    { name: 'English', path: '/english', color: 'text-english' },
+-    { name: 'Tamil', path: '/tamil', color: 'text-tamil' },
+-    { name: 'Malayalam', path: '/malayalam', color: 'text-malayalam' },
+-  ];
+-
+-  const socials = [
+-    { icon: Instagram, href: 'https://www.instagram.com/', label: 'Instagram' },
+-  ];
++  const location = useLocation();
++  const isContactPage = location.pathname === '/contact';
+ 
+   return (
+-    <footer className="relative bg-slate-50 border-t border-border overflow-hidden">
+-      {/* Background Elements */}
+-      <div className="absolute inset-0 opacity-[0.03]">
+-        <div className="absolute inset-0 bg-primary/10 pointer-events-none" />
+-      </div>
+-
+-      <div className="relative max-w-7xl mx-auto px-6 py-16">
+-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+-          {/* Brand */}
+-          <div className="lg:col-span-1">
+-            <Link to="/" className="flex items-center gap-3 mb-6">
+-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/20">
+-                <Mic2 className="w-6 h-6 text-white" />
+-              </div>
+-              <div>
+-                <h3 className="font-display text-xl font-bold text-foreground">Suja Sambandam</h3>
+-                <p className="text-xs text-primary font-semibold">Voice Artist</p>
+-              </div>
+-            </Link>
+-            <p className="text-muted text-sm leading-relaxed mb-6">
+-              Professional voice artist specializing in dubbing and podcasting across four languages. Bringing stories to life through the power of voice.
+-            </p>
+-            <div className="flex gap-3">
+-              {socials.map((social) => (
+-                <motion.a
+-                  key={social.label}
+-                  href={social.href}
+-                  whileHover={{ scale: 1.1, y: -2 }}
+-                  className="w-10 h-10 rounded-full bg-border/50 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors"
+-                >
+-                  <social.icon className="w-4 h-4" />
+-                </motion.a>
+-              ))}
+-            </div>
+-          </div>
+-
+-          {/* Languages */}
+-          <div>
+-            <h4 className="font-display text-lg font-semibold mb-6">Languages</h4>
+-            <ul className="space-y-3">
+-              {languages.map((lang) => (
+-                <li key={lang.path}>
+-                  <Link
+-                    to={lang.path}
+-                    className={`text-muted hover:${lang.color} transition-colors flex items-center gap-2 group`}
+-                  >
+-                    <span className={`w-2 h-2 rounded-full bg-current opacity-50 group-hover:opacity-100 ${lang.color}`} />
+-                    {lang.name}
+-                  </Link>
+-                </li>
+-              ))}
+-            </ul>
+-          </div>
+-
+-          {/* Quick Links */}
+-          <div>
+-            <h4 className="font-display text-lg font-semibold mb-6">Quick Links</h4>
+-            <ul className="space-y-3">
+-              {['Home', 'Portfolio', 'About', 'Contact'].map((link) => (
+-                <li key={link}>
+-                  <Link
+-                    to={link === 'Home' ? '/' : link === 'About' ? '/about' : `/${link.toLowerCase()}`}
+-                    className="text-muted hover:text-foreground transition-colors"
+-                  >
+-                    {link}
+-                  </Link>
+-                </li>
+-              ))}
+-            </ul>
+-          </div>
+-
+-          {/* Contact */}
+-          <div>
+-            <h4 className="font-display text-lg font-semibold mb-6">Get In Touch</h4>
+-            <ul className="space-y-4">
+-              <li className="flex items-start gap-3">
+-                <Mail className="w-5 h-5 text-primary mt-0.5" />
+-                <div>
+-                  <p className="text-sm text-muted">Email</p>
+-                  <a href="mailto:sujavagishwari.voiceartist@gmail.com" className="hover:text-primary transition-colors">
+-                    sujavagishwari.voiceartist@gmail.com
+-                  </a>
+-                </div>
+-              </li>
+-              <li className="flex items-start gap-3">
+-                <Phone className="w-5 h-5 text-primary mt-0.5" />
+-                <div>
+-                  <p className="text-sm text-muted">Phone</p>
+-                  <a href="tel:+918939179351" className="hover:text-primary transition-colors">
+-                    +91 89391 79351
+-                  </a>
+-                </div>
+-              </li>
+-              <li className="flex items-start gap-3">
+-                <MapPin className="w-5 h-5 text-primary mt-0.5" />
+-                <div>
+-                  <p className="text-sm text-muted">Location</p>
+-                  <p>Chennai, India</p>
+-                </div>
+-              </li>
+-            </ul>
++    <footer className="reveal">
++      {!isContactPage && (
++        <div className="footer-cta" style={{ padding: '8rem 5%', borderTop: '1px solid rgba(200,150,74,0.1)' }}>
++          <div className="section-label" style={{ justifyContent: 'center', color: 'var(--gold-pale)' }}>Get In Touch</div>
++          <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>Ready to <em>collaborate?</em></h2>
++          <p style={{ opacity: 0.8, marginBottom: '2.5rem', maxWidth: '600px', margin: '0 auto 2.5rem' }}>Whether it's a feature film, a brand commercial, or an experimental podcast — I'd love to hear your vision.</p>
++          <div style={{ display: 'flex', gap: '1.2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
++            <a href="mailto:sujavagishwari.voiceartist@gmail.com" className="btn-primary">Connect via Email</a>
++            <a href="https://instagram.com" className="btn-outline" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'var(--cream)' }}>Instagram</a>
+           </div>
+         </div>
++      )}
+ 
+-        {/* Bottom Bar */}
+-        <div className="mt-16 pt-8 border-t border-primary flex flex-col md:flex-row items-center justify-between gap-4">
+-          <p className="text-sm text-primary/80">
+-            © {new Date().getFullYear()} Suja Sambandam. All rights reserved.
+-          </p>
+-          <div className="flex items-center gap-6">
+-            <Link to="/contact" className="text-sm font-medium text-primary hover:scale-105 transition-transform">
+-              Hire Me
+-            </Link>
+-            <span className="text-primary opacity-30">|</span>
+-            <p className="text-sm text-primary/80">Crafted with passion for voice</p>
+-          </div>
++      <div className="footer-bottom" style={{ padding: '3rem 5%', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
++        <Link to="/" className="footer-logo">𝄞 SujaVoices</Link>
++        <div className="footer-copy" style={{ textAlign: 'right' }}>
++          &copy; {new Date().getFullYear()} Suja Sambandam. All rights reserved. <br />
++          <span style={{ opacity: 0.4, fontSize: '0.75rem' }}>Crafted with passion for voice</span>
+         </div>
+       </div>
+     </footer>
+
+commit adbeb8d95eb0f516a2c8a880748dcbf823b023fd
+Author: Sanjay Kumar <sanjaystar044@gmail.com>
+Date:   Sun Mar 22 22:04:50 2026 +0530
+
+    Update About page to remove explicit timeline dates and apply design tweaks
+
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+index e2b73d7..374ea7b 100644
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -15,11 +15,10 @@ export default function Footer() {
+   ];
+ 
+   return (
+-    <footer className="relative bg-card border-t border-border overflow-hidden">
++    <footer className="relative bg-slate-50 border-t border-border overflow-hidden">
+       {/* Background Elements */}
+-      <div className="absolute inset-0 opacity-5">
+-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary rounded-full blur-3xl" />
+-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary rounded-full blur-3xl" />
++      <div className="absolute inset-0 opacity-[0.03]">
++        <div className="absolute inset-0 bg-primary/10 pointer-events-none" />
+       </div>
+ 
+       <div className="relative max-w-7xl mx-auto px-6 py-16">
+@@ -27,12 +26,12 @@ export default function Footer() {
+           {/* Brand */}
+           <div className="lg:col-span-1">
+             <Link to="/" className="flex items-center gap-3 mb-6">
+-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
++              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/20">
+                 <Mic2 className="w-6 h-6 text-white" />
+               </div>
+               <div>
+-                <h3 className="font-display text-xl font-bold">Suja Sambandam</h3>
+-                <p className="text-xs text-muted">Voice Artist</p>
++                <h3 className="font-display text-xl font-bold text-foreground">Suja Sambandam</h3>
++                <p className="text-xs text-primary font-semibold">Voice Artist</p>
+               </div>
+             </Link>
+             <p className="text-muted text-sm leading-relaxed mb-6">
+@@ -121,16 +120,16 @@ export default function Footer() {
+         </div>
+ 
+         {/* Bottom Bar */}
+-        <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
+-          <p className="text-sm text-muted">
++        <div className="mt-16 pt-8 border-t border-primary flex flex-col md:flex-row items-center justify-between gap-4">
++          <p className="text-sm text-primary/80">
+             © {new Date().getFullYear()} Suja Sambandam. All rights reserved.
+           </p>
+           <div className="flex items-center gap-6">
+-            <Link to="/contact" className="text-sm text-muted hover:text-primary transition-colors">
++            <Link to="/contact" className="text-sm font-medium text-primary hover:scale-105 transition-transform">
+               Hire Me
+             </Link>
+-            <span className="text-border">|</span>
+-            <p className="text-sm text-muted">Crafted with passion for voice</p>
++            <span className="text-primary opacity-30">|</span>
++            <p className="text-sm text-primary/80">Crafted with passion for voice</p>
+           </div>
+         </div>
+       </div>
+
+commit 0268897f9b778808c4f15fff345abf0d46266a9f
+Author: Sanjay Kumar <sanjaystar044@gmail.com>
+Date:   Sat Mar 21 18:31:18 2026 +0530
+
+    feat: complete artistic portfolio animations and layouts
+
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+new file mode 100644
+index 0000000..e2b73d7
+--- /dev/null
++++ b/src/components/Footer.tsx
+@@ -0,0 +1,139 @@
++import { Link } from 'react-router-dom';
++import { motion } from 'framer-motion';
++import { Mic2, Mail, Phone, MapPin, Instagram } from 'lucide-react';
++
++export default function Footer() {
++  const languages = [
++    { name: 'Hindi', path: '/hindi', color: 'text-hindi' },
++    { name: 'English', path: '/english', color: 'text-english' },
++    { name: 'Tamil', path: '/tamil', color: 'text-tamil' },
++    { name: 'Malayalam', path: '/malayalam', color: 'text-malayalam' },
++  ];
++
++  const socials = [
++    { icon: Instagram, href: 'https://www.instagram.com/', label: 'Instagram' },
++  ];
++
++  return (
++    <footer className="relative bg-card border-t border-border overflow-hidden">
++      {/* Background Elements */}
++      <div className="absolute inset-0 opacity-5">
++        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary rounded-full blur-3xl" />
++        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary rounded-full blur-3xl" />
++      </div>
++
++      <div className="relative max-w-7xl mx-auto px-6 py-16">
++        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
++          {/* Brand */}
++          <div className="lg:col-span-1">
++            <Link to="/" className="flex items-center gap-3 mb-6">
++              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
++                <Mic2 className="w-6 h-6 text-white" />
++              </div>
++              <div>
++                <h3 className="font-display text-xl font-bold">Suja Sambandam</h3>
++                <p className="text-xs text-muted">Voice Artist</p>
++              </div>
++            </Link>
++            <p className="text-muted text-sm leading-relaxed mb-6">
++              Professional voice artist specializing in dubbing and podcasting across four languages. Bringing stories to life through the power of voice.
++            </p>
++            <div className="flex gap-3">
++              {socials.map((social) => (
++                <motion.a
++                  key={social.label}
++                  href={social.href}
++                  whileHover={{ scale: 1.1, y: -2 }}
++                  className="w-10 h-10 rounded-full bg-border/50 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors"
++                >
++                  <social.icon className="w-4 h-4" />
++                </motion.a>
++              ))}
++            </div>
++          </div>
++
++          {/* Languages */}
++          <div>
++            <h4 className="font-display text-lg font-semibold mb-6">Languages</h4>
++            <ul className="space-y-3">
++              {languages.map((lang) => (
++                <li key={lang.path}>
++                  <Link
++                    to={lang.path}
++                    className={`text-muted hover:${lang.color} transition-colors flex items-center gap-2 group`}
++                  >
++                    <span className={`w-2 h-2 rounded-full bg-current opacity-50 group-hover:opacity-100 ${lang.color}`} />
++                    {lang.name}
++                  </Link>
++                </li>
++              ))}
++            </ul>
++          </div>
++
++          {/* Quick Links */}
++          <div>
++            <h4 className="font-display text-lg font-semibold mb-6">Quick Links</h4>
++            <ul className="space-y-3">
++              {['Home', 'Portfolio', 'About', 'Contact'].map((link) => (
++                <li key={link}>
++                  <Link
++                    to={link === 'Home' ? '/' : link === 'About' ? '/about' : `/${link.toLowerCase()}`}
++                    className="text-muted hover:text-foreground transition-colors"
++                  >
++                    {link}
++                  </Link>
++                </li>
++              ))}
++            </ul>
++          </div>
++
++          {/* Contact */}
++          <div>
++            <h4 className="font-display text-lg font-semibold mb-6">Get In Touch</h4>
++            <ul className="space-y-4">
++              <li className="flex items-start gap-3">
++                <Mail className="w-5 h-5 text-primary mt-0.5" />
++                <div>
++                  <p className="text-sm text-muted">Email</p>
++                  <a href="mailto:sujavagishwari.voiceartist@gmail.com" className="hover:text-primary transition-colors">
++                    sujavagishwari.voiceartist@gmail.com
++                  </a>
++                </div>
++              </li>
++              <li className="flex items-start gap-3">
++                <Phone className="w-5 h-5 text-primary mt-0.5" />
++                <div>
++                  <p className="text-sm text-muted">Phone</p>
++                  <a href="tel:+918939179351" className="hover:text-primary transition-colors">
++                    +91 89391 79351
++                  </a>
++                </div>
++              </li>
++              <li className="flex items-start gap-3">
++                <MapPin className="w-5 h-5 text-primary mt-0.5" />
++                <div>
++                  <p className="text-sm text-muted">Location</p>
++                  <p>Chennai, India</p>
++                </div>
++              </li>
++            </ul>
++          </div>
++        </div>
++
++        {/* Bottom Bar */}
++        <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
++          <p className="text-sm text-muted">
++            © {new Date().getFullYear()} Suja Sambandam. All rights reserved.
++          </p>
++          <div className="flex items-center gap-6">
++            <Link to="/contact" className="text-sm text-muted hover:text-primary transition-colors">
++              Hire Me
++            </Link>
++            <span className="text-border">|</span>
++            <p className="text-sm text-muted">Crafted with passion for voice</p>
++          </div>
++        </div>
++      </div>
++    </footer>
++  );
++}

@@ -1,13 +1,24 @@
+export type Category = 
+  | 'Tamil Storytelling' 
+  | 'Malayalam Podcasts' 
+  | 'Voice Acting' 
+  | 'Audiobooks' 
+  | 'OTT Content' 
+  | 'E-Learning'
+  | 'Hindi Dubbing'
+  | 'English Narration';
+
 export interface Work {
   id: string;
   title: string;
   description: string;
-  filename: string; // The real filename from the second screenshot
+  filename: string;
   language: 'Hindi' | 'English' | 'Tamil' | 'Malayalam';
   audio: string;
   duration?: string;
   year?: string;
   featured?: boolean;
+  category: Category;
 }
 
 export const works: Work[] = [
@@ -21,6 +32,7 @@ export const works: Work[] = [
     audio: '/audio/Hindi/Hindi dub.mp3',
     year: '2023',
     featured: true,
+    category: 'Hindi Dubbing',
   },
   {
     id: 'h2',
@@ -30,6 +42,7 @@ export const works: Work[] = [
     language: 'Hindi',
     audio: '/audio/Hindi/podcast.hindi.mp3',
     year: '2023',
+    category: 'Malayalam Podcasts', // Categorized as Podcast
   },
   {
     id: 'h3',
@@ -39,18 +52,30 @@ export const works: Work[] = [
     language: 'Hindi',
     audio: '/audio/Hindi/movie dub_hindi.mp3',
     year: '2022',
+    category: 'Hindi Dubbing',
+  },
+  {
+    id: 'h4',
+    title: 'Hindi Commercial Ad',
+    description: 'Professional voice for national Hindi television commercials.',
+    filename: 'Add hindi.mp3',
+    language: 'Hindi',
+    audio: '/audio/Hindi/Add hindi.mp3',
+    year: '2024',
+    category: 'Voice Acting',
   },
 
   // English Works
   {
     id: 'e1',
-    title: 'Nature Documentary Series',
-    description: 'Professional narration for a 10-part wildlife series.',
+    title: 'Shadows of the Past',
+    description: 'A family saga of the fictional Menon family with a non-linear narrative, blending fictional storytelling with real-life experiences.',
     filename: 'Audiobbok.eng.mp3',
     language: 'English',
-    audio: '/audio/English/Audiobbok.eng.mp3',
-    year: '2023',
+    audio: '',
+    year: '2026',
     featured: true,
+    category: 'Audiobooks',
   },
   {
     id: 'e2',
@@ -60,6 +85,7 @@ export const works: Work[] = [
     language: 'English',
     audio: '/audio/English/Podcast.eng.mp3',
     year: '2022-Present',
+    category: 'Malayalam Podcasts', // Categorized as Podcast
   },
   {
     id: 'e3',
@@ -69,6 +95,7 @@ export const works: Work[] = [
     language: 'English',
     audio: '/audio/English/coprporate.add.eng.mp3',
     year: '2023',
+    category: 'E-Learning',
   },
   {
     id: 'e4',
@@ -78,6 +105,7 @@ export const works: Work[] = [
     language: 'English',
     audio: '/audio/English/Emirates. Corporate add.mp3',
     year: '2022',
+    category: 'Voice Acting',
   },
   {
     id: 'e5',
@@ -87,6 +115,17 @@ export const works: Work[] = [
     language: 'English',
     audio: '/audio/English/news.mp3',
     year: '2023',
+    category: 'English Narration',
+  },
+  {
+    id: 'e6',
+    title: 'Global Wildlife Documentary',
+    description: 'Narrating the wonders of the natural world for global streaming.',
+    filename: 'documentary.english.mp3',
+    language: 'English',
+    audio: '/audio/English/documentary.english.mp3',
+    year: '2024',
+    category: 'English Narration',
   },
 
   // Tamil Works
@@ -99,6 +138,7 @@ export const works: Work[] = [
     audio: '/audio/Tamil/movie dub.tamil.mp3',
     year: '2023',
     featured: true,
+    category: 'OTT Content',
   },
   {
     id: 't2',
@@ -108,6 +148,7 @@ export const works: Work[] = [
     language: 'Tamil',
     audio: '/audio/Tamil/corporate add tamil.mp3',
     year: '2023',
+    category: 'Voice Acting',
   },
   {
     id: 't3',
@@ -117,6 +158,7 @@ export const works: Work[] = [
     language: 'Tamil',
     audio: '/audio/Tamil/movie dub_tamil.mp3',
     year: '2023',
+    category: 'OTT Content',
   },
   {
     id: 't4',
@@ -126,6 +168,37 @@ export const works: Work[] = [
     language: 'Tamil',
     audio: '/audio/Tamil/kids story tamil.mp3',
     year: '2021-Present',
+    category: 'Tamil Storytelling',
+  },
+  {
+    id: 't5',
+    title: 'Tamil Brand Ad (A)',
+    description: 'Premium voice for Tamil television commercials.',
+    filename: 'Add.tamil 2.mp3',
+    language: 'Tamil',
+    audio: '/audio/Tamil/Add.tamil 2.mp3',
+    year: '2024',
+    category: 'Voice Acting',
+  },
+  {
+    id: 't6',
+    title: 'Tamil Brand Ad (B)',
+    description: 'Energetic voice for cultural brand awareness projects.',
+    filename: 'Add.tamil.mp3',
+    language: 'Tamil',
+    audio: '/audio/Tamil/Add.tamil.mp3',
+    year: '2024',
+    category: 'Voice Acting',
+  },
+  {
+    id: 't7',
+    title: 'Tamil Radio Jockey',
+    description: 'Vibrant RJ hosting for popular Tamil FM stations.',
+    filename: 'rj.tamil.mp3',
+    language: 'Tamil',
+    audio: '/audio/Tamil/rj.tamil.mp3',
+    year: '2024',
+    category: 'Voice Acting',
   },
 
   // Malayalam Works
@@ -138,6 +211,7 @@ export const works: Work[] = [
     audio: '/audio/Malayalam/movie dub_malayalam.mp3',
     year: '2023',
     featured: true,
+    category: 'OTT Content',
   },
   {
     id: 'm2',
@@ -147,11 +221,35 @@ export const works: Work[] = [
     language: 'Malayalam',
     audio: '/audio/Malayalam/Malayalam serial.mp3',
     year: '2023',
+    category: 'OTT Content',
+  },
+  {
+    id: 'm3',
+    title: 'Malayalam Brand Ad',
+    description: 'Clear and engaging voice for Malayalam commercials.',
+    filename: 'Add_malayalam.mp3',
+    language: 'Malayalam',
+    audio: '/audio/Malayalam/Add_malayalam.mp3',
+    year: '2024',
+    category: 'Voice Acting',
+  },
+  {
+    id: 'm4',
+    title: 'Malayalam Radio Host',
+    description: 'Engaging narration and hosting for Malayalam radio programmes.',
+    filename: 'rj 01.malayalam.mp3',
+    language: 'Malayalam',
+    audio: '/audio/Malayalam/rj 01.malayalam.mp3',
+    year: '2024',
+    category: 'Voice Acting',
   },
 ];
 
 export const getWorksByLanguage = (language: Work['language']) => 
   works.filter(work => work.language === language);
+
+export const getWorksByCategory = (category: Category) => 
+  works.filter(work => work.category === category);
 
 export const getFeaturedWorks = () => 
   works.filter(work => work.featured);

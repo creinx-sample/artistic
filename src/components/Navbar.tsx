@@ -17,6 +17,7 @@ export default function Navbar() {
     { name: 'Home', path: '/' },
     { name: 'About Me', path: '/about' },
     { name: 'Works', path: '/portfolio' },
+    { name: 'Audiobooks', path: '/audiobooks' },
   ];
 
   return (

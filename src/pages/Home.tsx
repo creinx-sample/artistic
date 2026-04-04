@@ -154,10 +154,15 @@ export default function Home() {
       {/* MARQUEE */}
       <div className="marquee-strip">
         <div className="marquee-inner">
-          {['Hindi Dubbing', 'English Narration', 'Tamil Storytelling', 'Malayalam Podcasts', 'Voice Acting', 'Audiobooks', 'OTT Content', 'E-Learning', 'Hindi Dubbing', 'English Narration', 'Tamil Storytelling', 'Malayalam Podcasts', 'Voice Acting', 'Audiobooks', 'OTT Content', 'E-Learning'].map((x, i) => (
-            <span key={i} className="mq-item">
+          {Array(20).fill('Audiobooks').map((x, i) => (
+            <Link 
+              key={i} 
+              to={`/audiobook/e1`} 
+              className="mq-item"
+              style={{ textDecoration: 'none', cursor: 'pointer' }}
+            >
               {x}<span className="mq-dot">✦</span>
-            </span>
+            </Link>
           ))}
         </div>
       </div>
@@ -200,7 +205,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="musical-divider"><div className="divider-line"></div><span className="divider-note">𝅘𝅥𝅮</span><span className="divider-note" style={{ fontSize: '1rem' }}>♩</span><span className="divider-note">♬</span><span className="divider-note" style={{ fontSize: '1rem' }}>♩</span><span className="divider-note">𝅘𝅥𝅮</span><div className="divider-line"></div></div>
+      {/* Musical divider removed */}
 
       {/* LANGUAGES */}
       <section id="languages">

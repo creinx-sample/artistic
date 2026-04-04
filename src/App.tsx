@@ -9,8 +9,10 @@ import { Mic2, Headphones, Film, Globe } from 'lucide-react';
 import Home from './pages/Home';
 import About from './pages/About';
 import Portfolio from './pages/Portfolio';
+import Audiobooks from './pages/Audiobooks';
 import LanguagePage from './pages/LanguagePage';
 import Contact from './pages/Contact';
+import AudiobookDetail from './pages/AudiobookDetail';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -92,6 +94,8 @@ function PageRoutes({ setTrack }: { setTrack: (track: any) => void }) {
         }
       />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/audiobooks" element={<Audiobooks />} />
+      <Route path="/audiobook/:id" element={<AudiobookDetail setTrack={setTrack} />} />
     </Routes>
   );
 }

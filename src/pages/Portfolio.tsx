@@ -29,8 +29,8 @@ export default function Portfolio({ setTrack }: { setTrack: (track: any) => void
   };
 
   return (
-    <div className="min-h-screen pt-32 pb-0">
-      <section id="portfolio" style={{ padding: '4rem 5% 2rem', maxWidth: '1200px', margin: '0 auto' }}>
+    <div className="page-container">
+      <section id="portfolio" style={{ padding: '0 5% 2rem', maxWidth: '1200px', margin: '0 auto' }}>
         <div className="section-label reveal">Archives</div>
         <h2 className="section-title reveal d1" style={{ marginBottom: '2rem' }}>Voice <em>Repertoire</em></h2>
         

@@ -67,10 +67,58 @@ nav .logo-tagline{font-size:.65rem!important;font-weight:300!important;color:var
 
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:none}
 .hamburger span{display:block;width:24px;height:1.5px;background:var(--cream);transition:.3s}
-.mob-menu{display:none;position:fixed;inset:0;z-index:900;background:rgba(10,31,30,.98);backdrop-filter:blur(20px);align-items:center;justify-content:center;flex-direction:column;gap:2rem}
+
+/* nav-toggle (hamburger button used in Navbar.tsx) */
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;z-index:1001}
+.nav-toggle span{display:block;width:24px;height:2px;background:var(--cream);border-radius:2px;transition:all .35s ease}
+.nav-toggle.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-toggle.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ── MOBILE NAV OVERRIDES ── */
+@media(max-width:768px){
+  nav{background:rgba(10,31,30,.97)!important;padding:1rem 4%!important}
+  .nav-right{gap:1rem!important}
+  .nav-container{gap:0.5rem}
+  nav .logo-name{font-size:1rem!important}
+  nav .logo-tagline{display:none!important}
+  nav .mic-circle{width:36px!important;height:36px!important;font-size:1rem!important}
+  .nav-cta{padding:.55rem 1.1rem!important;font-size:.68rem!important;white-space:nowrap}
+  .nav-toggle{display:flex!important}
+  .nav-toggle span{background:#f8f4ed!important}
+}
+
+.mob-menu{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:1100;
+  background:#0a1f1e;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:0;
+  padding:3.5rem 2rem 2rem;
+}
 .mob-menu.open{display:flex}
-.mob-menu a{font-family:var(--fd);font-size:2rem;font-weight:300;color:var(--cream);text-decoration:none;letter-spacing:.1em;transition:color .3s}
-.mob-menu a:hover{color:var(--gold)}
+
+/* mobile menu nav links — single rule, no conflicting .mob-menu a */
+.mob-link{
+  font-size:0.82rem;
+  font-weight:500;
+  color:rgba(248,244,237,0.65);
+  text-decoration:none!important;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  transition:color .2s, background .2s;
+  border-bottom:1px solid rgba(200,150,74,0.08);
+  width:100%;
+  max-width:300px;
+  text-align:center;
+  padding:.9rem 0;
+  display:block;
+}
+.mob-link:hover{color:var(--gold)!important;background:rgba(200,150,74,0.04)}
 
 /* ── HERO ── */
 #hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 5% 60px;overflow:hidden}
@@ -159,14 +207,20 @@ nav .logo-tagline{font-size:.65rem!important;font-weight:300!important;color:var
 
 /* ── SHARED ── */
 section{position:relative;z-index:2}
-.section-label{font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem}
-@media (max-width: 600px) {
-  .section-label { font-size: 0.85rem; letter-spacing: 0.25em; }
+.section-label{font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;opacity:0.9}
+@media (max-width: 768px) {
+  .section-label { font-size: 0.8rem; letter-spacing: 0.2rem; opacity: 1; }
   .about-bio { font-size: 1.15rem !important; }
 }
 .section-label::before{content:'';display:block;width:40px;height:1px;background:var(--gold)}
 .section-title{font-family:var(--fd);font-size:clamp(2.5rem,4vw,4rem);font-weight:300;line-height:1.1;color:var(--cream)}
 .section-title em{color:var(--gold);font-style:italic}
+
+.page-container {
+  padding-top: clamp(7rem, 20vw, 12rem);
+  padding-bottom: 3rem;
+  min-height: 100vh;
+}
 
 /* ── MARQUEE ── */
 .marquee-strip{background:var(--gold);padding:.9rem 0;overflow:hidden;white-space:nowrap;position:relative;z-index:2}
@@ -383,15 +437,20 @@ footer{background:linear-gradient(to bottom, #061312, #040c0b); position:relativ
   #contact{grid-template-columns:1fr;gap:3rem}
   .footer-top{grid-template-columns:1fr 1fr;gap:3rem}
   .nav-links{display:none}.hamburger{display:flex}
+  .nav-toggle{display:flex}
   .hero-visual{display:none}
   .mob-menu{display:none}
   .mob-menu.open{display:flex}
+  /* Footer 2x2 grid on tablet */
+  .footer-grid-inner{grid-template-columns:repeat(2,1fr)!important;gap:2.5rem!important}
 }
 @media(max-width:600px){
   .works-grid{grid-template-columns:1fr}
-  .footer-top{grid-template-columns:1fr}
+  .footer-grid-inner{grid-template-columns:repeat(2,1fr)!important;gap:2rem!important}
   .about-stats{grid-template-columns:repeat(2,1fr)}
   .form-row{grid-template-columns:1fr}
+  /* Audiobook grid full-width on mobile */
+  .audiobooks-grid{grid-template-columns:1fr!important}
 }
 
 /* ── CONTACT PAGE REDESIGN ── */
@@ -608,3 +667,20 @@ footer{background:linear-gradient(to bottom, #061312, #040c0b); position:relativ
     gap: 4rem;
   }
 }
+
+/* ── AUDIOBOOKS PAGE ── */
+/* Desktop: show grid, hide carousel */
+.audiobooks-grid { display: grid !important; }
+.audiobooks-carousel { display: none !important; }
+
+/* Mobile (<= 640px): hide grid, show carousel */
+@media (max-width: 640px) {
+  .audiobooks-grid { display: none !important; }
+  .audiobooks-carousel { display: block !important; }
+}
+
+@keyframes ab-progress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+

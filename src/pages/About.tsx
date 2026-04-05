@@ -34,8 +34,8 @@ export default function About() {
   }, []);
 
   return (
-    <div className="min-h-screen pt-32 pb-0">
-      <section id="about" style={{ padding: '0 5%', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '6rem', alignItems: 'start', maxWidth: '1200px', margin: '15rem auto 0' }}>
+    <div className="page-container">
+      <section id="about" style={{ padding: '0 5%', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '6rem', alignItems: 'start', maxWidth: '1200px', margin: '2rem auto 0' }}>
         <div className="about-frame reveal" style={{ maxWidth: '320px', justifySelf: 'center' }}>
           <div className="about-img-container" style={{ aspectRatio: '4/5' }}>
             {aboutImages.map((src, idx) => (

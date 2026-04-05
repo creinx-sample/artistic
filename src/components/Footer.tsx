@@ -34,7 +34,7 @@ export default function Footer() {
 
       {/* 4-Column Footer Content */}
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '4rem 5%', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '4rem' }}>
+        <div className="footer-grid-inner" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '4rem' }}>
           
           {/* Column 1: Brand & Attributions */}
           <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -85,9 +85,9 @@ export default function Footer() {
           <div>
              <h4 style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--cream)', marginBottom: '1.5rem' }}>Location</h4>
              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', color: 'var(--cream)', opacity: 0.8, fontSize: '0.85rem' }}>
-               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                 <Mail size={16} color="var(--gold)" />
-                 <span>sujavagishwari.voiceartist@gmail.com</span>
+               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                 <Mail size={16} color="var(--gold)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                 <span style={{ fontSize: '0.75rem', wordBreak: 'break-all', lineHeight: 1.5 }}>sujavagishwari.voiceartist@gmail.com</span>
                </div>
                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                  <Phone size={16} color="var(--gold)" />

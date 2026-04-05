@@ -23,7 +23,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen pt-32 pb-0" style={{ position: 'relative', overflow: 'hidden' }}>
+    <div className="page-container" style={{ position: 'relative', overflow: 'hidden' }}>
       <div className="contact-bg-glow" style={{ top: '20%', right: '10%' }}></div>
       <div className="contact-bg-glow" style={{ bottom: '10%', left: '5%' }}></div>
       
@@ -32,7 +32,7 @@ export default function Contact() {
       <div className="contact-accent" style={{ bottom: '25%', left: '15%', animationDelay: '2s' }}>♯</div>
       <div className="contact-accent" style={{ bottom: '15%', right: '25%', animationDelay: '0.5s', fontSize: '1.2rem' }}>𝄢</div>
 
-      <section id="contact" style={{ padding: '15rem 3% 2rem', maxWidth: '100%', margin: '0 auto', width: '100%' }}>
+      <section id="contact" style={{ padding: '2rem 3% 2rem', maxWidth: '100%', margin: '0 auto', width: '100%' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', width: '100%' }}>
           <div className="reveal">
             <div className="section-label">Get In Touch</div>

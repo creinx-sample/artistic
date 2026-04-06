@@ -147,6 +147,9 @@ nav .logo-tagline{font-size:.65rem!important;font-weight:300!important;color:var
 .btn-success{background:#2ecc71!important;color:#fff!important;pointer-events:none}
 .btn-outline{padding:1.1rem 2.8rem;border:1px solid rgba(255,255,255,.2);color:var(--cream);background:transparent;border-radius:50px;font-family:var(--fb);font-size:.82rem;font-weight:400;letter-spacing:.1em;cursor:none;text-decoration:none;transition:all .3s;display:inline-flex;align-items:center;width:fit-content}
 .btn-outline:hover{border-color:var(--gold);background:rgba(200,150,74,.05);color:var(--gold)}
+.btn-white{padding:1.1rem 2.8rem;background:var(--cream);color:var(--dark);border:none;border-radius:50px;font-family:var(--fb);font-size:.82rem;font-weight:600;letter-spacing:.1em;cursor:none;text-decoration:none;transition:all .3s;display:inline-flex;align-items:center;gap:.8rem;width:fit-content}
+.btn-white:hover{background:#fff;transform:scale(1.05);box-shadow:0 10px 30px rgba(255,255,255,0.2)}
+.btn-white:active{transform:scale(.98)}
 
 .hero-wave-visualizer{position:absolute;bottom:0;left:0;width:100%;height:140px;z-index:1;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:.5}
 .wave-track{display:flex;align-items:flex-end;gap:2.5px;width:100%;height:100%;overflow:hidden;mask-image:linear-gradient(to right,transparent,black 15%,black 85%,transparent)}
@@ -206,7 +209,10 @@ nav .logo-tagline{font-size:.65rem!important;font-weight:300!important;color:var
 }
 
 /* ── SHARED ── */
-section{position:relative;z-index:2}
+section{position:relative;z-index:2;padding:6rem 5%}
+@media (min-width: 1024px) {
+  section { padding: 4.5rem 5% !important; }
+}
 .section-label{font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;opacity:0.9}
 @media (max-width: 768px) {
   .section-label { font-size: 0.8rem; letter-spacing: 0.2rem; opacity: 1; }
@@ -235,7 +241,10 @@ section{position:relative;z-index:2}
 .divider-note{font-size:1.5rem;color:var(--gold)}
 
 /* ── ABOUT ── */
-#about{padding:10rem 5%;display:grid;grid-template-columns:1fr 1.2fr;gap:8rem;align-items:center;background:linear-gradient(180deg,var(--dark) 0%,#0d2e2c 50%,var(--dark) 100%)}
+#about{padding:6rem 5%;display:grid;grid-template-columns:1fr 1.2fr;gap:8rem;align-items:center;background:linear-gradient(180deg,var(--dark) 0%,#0d2e2c 50%,var(--dark) 100%)}
+@media (min-width: 1024px) {
+  #about { padding: 4.5rem 5% !important; }
+}
 .about-frame{position:relative;width:100%;max-width:380px;aspect-ratio:4/5;border-radius:12px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.4);justify-self:center}
 .about-img-container{width:100%;height:100%;position:relative;background:var(--teal-deep)}
 .about-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease-in-out;background-size:cover;background-position:center top}
@@ -261,7 +270,10 @@ section{position:relative;z-index:2}
 .stat-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-top:.4rem}
 
 /* ── LANGUAGES ── */
-#languages{padding:8rem 5%;background:var(--dark)}
+#languages{padding:6rem 5%;background:var(--dark)}
+@media (min-width: 1024px) {
+  #languages { padding: 4.5rem 5% !important; }
+}
 .lang-header{text-align:center;margin-bottom:5rem}
 .lang-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;max-width:1000px;margin:0 auto}
 .lang-card{position:relative;overflow:hidden;padding:3.5rem;background:var(--teal-deep);cursor:none;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;transition:background .4s}
@@ -280,7 +292,10 @@ section{position:relative;z-index:2}
 .lang-card:hover .lang-arrow{background:var(--gold);color:var(--dark);transform:rotate(45deg)}
 
 /* ── PORTFOLIO (ARCHIVES) ── */
-#portfolio{padding:8rem 5%;background:var(--dark)}
+#portfolio{padding:6rem 5%;background:var(--dark)}
+@media (min-width: 1024px) {
+  #portfolio { padding: 4.5rem 5% !important; }
+}
 .portfolio-filter.active{color:var(--gold)!important}
 .portfolio-filter:hover{color:var(--gold-light)!important;opacity:1!important}
 
@@ -330,7 +345,10 @@ section{position:relative;z-index:2}
 }
 
 /* ── TESTIMONIALS ── */
-#testimonials{padding:8rem 5%;background:var(--dark);overflow:hidden}
+#testimonials{padding:6rem 5%;background:var(--dark);overflow:hidden}
+@media (min-width: 1024px) {
+  #testimonials { padding: 4.5rem 5% !important; }
+}
 .test-header{text-align:center;margin-bottom:5rem}
 .testimonials-wrap{overflow:hidden}
 .testimonials-wrap:hover .testimonials-track{animation-play-state:paused}
@@ -345,7 +363,10 @@ section{position:relative;z-index:2}
 .test-role{font-size:.7rem;color:var(--gold);letter-spacing:.1em}
 
 /* ── CONTACT ── */
-#contact{padding:8rem 5%;display:block;width:100%}
+#contact{padding:6rem 5%;display:block;width:100%}
+@media (min-width: 1024px) {
+  #contact { padding: 4.5rem 5% !important; }
+}
 .contact-links{margin-top:3rem;display:flex;flex-direction:column;gap:1.5rem}
 .contact-item{display:flex;align-items:center;gap:1.5rem;padding:1.5rem;border:1px solid rgba(200,150,74,.15);border-radius:2px;transition:border-color .3s,background .3s;cursor:none}
 .contact-item:hover{border-color:var(--gold);background:rgba(200,150,74,.05)}
@@ -361,7 +382,10 @@ section{position:relative;z-index:2}
 
 /* ── FOOTER ── */
 footer{background:linear-gradient(to bottom, #061312, #040c0b); position:relative;z-index:2}
-.footer-cta{text-align:center;position:relative;overflow:hidden;padding-top:10rem!important}
+.footer-cta{text-align:center;position:relative;overflow:hidden;padding-top:6rem!important}
+@media (min-width: 1024px) {
+  .footer-cta { padding-top: 4.5rem !important; }
+}
 .footer-cta::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:120px;background:linear-gradient(to bottom, transparent, var(--gold), transparent);opacity:0.4}
 .footer-cta::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:4px;height:4px;background:var(--gold);border-radius:50%;box-shadow:0 0 10px var(--gold)}
 .footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem}

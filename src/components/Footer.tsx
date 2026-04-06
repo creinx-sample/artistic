@@ -27,7 +27,10 @@ export default function Footer() {
           <p style={{ opacity: 0.8, marginBottom: '2.5rem', maxWidth: '600px', margin: '0 auto 2.5rem', textAlign: 'center', color: 'var(--cream)' }}>Whether it's a feature film, a brand commercial, or an experimental podcast — I'd love to hear your vision.</p>
           <div style={{ display: 'flex', gap: '1.2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="mailto:sujavagishwari.voiceartist@gmail.com" className="btn-primary">Connect via Email</a>
-            <a href="https://www.instagram.com/sujavagishwari78voiceartist?utm_source=qr&igsh=MWtva2JuNTM5eGU3ag==" target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'var(--cream)', padding: '0.8rem 2.2rem', borderRadius: '50px', border: '1px solid', textDecoration: 'none' }}>Instagram</a>
+            <a href="https://www.instagram.com/sujavagishwari78voiceartist?utm_source=qr&igsh=MWtva2JuNTM5eGU3ag==" target="_blank" rel="noopener noreferrer" className="btn-white">
+              <Instagram size={16} />
+              Instagram
+            </a>
           </div>
         </div>
       )}

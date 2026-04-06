@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { works } from '../data/works';
-import { Calendar, Clock, ArrowLeft, Play, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, Clock, ArrowLeft, Play, ChevronLeft, ChevronRight, Instagram } from 'lucide-react';
 
 export default function AudiobookDetail({ setTrack }: { setTrack: (track: any) => void }) {
   const { id } = useParams();
@@ -198,6 +198,22 @@ export default function AudiobookDetail({ setTrack }: { setTrack: (track: any) =
               <div style={{ fontSize: '0.75rem', opacity: 0.6, marginTop: '2px' }}>Recording latest chapters in the professional studio environment.</div>
             </div>
           </div>
+        </div>
+      </section>
+      
+      {/* Ready to Collaborate CTA — similar to Footer but for this page */}
+      <section className="reveal" style={{ padding: '4rem 5%', borderTop: '1px solid rgba(255,255,255,0.05)', textAlign: 'center' }}>
+        <div className="section-label" style={{ display: 'flex', justifyContent: 'center', color: 'var(--gold-pale)' }}>Get In Touch</div>
+        <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>Ready to <em>collaborate?</em></h2>
+        <p style={{ opacity: 0.8, marginBottom: '2.5rem', maxWidth: '600px', margin: '0 auto 2.5rem', color: 'var(--cream)' }}>
+          Whether it's a feature film, a brand commercial, or an experimental podcast — I'd love to hear your vision.
+        </p>
+        <div style={{ display: 'flex', gap: '1.2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a href="mailto:sujavagishwari.voiceartist@gmail.com" className="btn-primary">Connect via Email</a>
+          <a href="https://www.instagram.com/sujavagishwari78voiceartist?utm_source=qr&igsh=MWtva2JuNTM5eGU3ag==" target="_blank" rel="noopener noreferrer" className="btn-white">
+            <Instagram size={16} />
+            Instagram
+          </a>
         </div>
       </section>
     </div>

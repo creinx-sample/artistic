@@ -14,7 +14,7 @@ export default function Footer() {
   ];
 
   const socials = [
-    { icon: Instagram, href: 'https://instagram.com/', label: 'Instagram' },
+    { icon: Instagram, href: 'https://www.instagram.com/sujavagishwari78voiceartist?utm_source=qr&igsh=MWtva2JuNTM5eGU3ag==', label: 'Instagram' },
   ];
 
   return (
@@ -27,7 +27,7 @@ export default function Footer() {
           <p style={{ opacity: 0.8, marginBottom: '2.5rem', maxWidth: '600px', margin: '0 auto 2.5rem', textAlign: 'center', color: 'var(--cream)' }}>Whether it's a feature film, a brand commercial, or an experimental podcast — I'd love to hear your vision.</p>
           <div style={{ display: 'flex', gap: '1.2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="mailto:sujavagishwari.voiceartist@gmail.com" className="btn-primary">Connect via Email</a>
-            <a href="https://instagram.com" className="btn-outline" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'var(--cream)', padding: '0.8rem 2.2rem', borderRadius: '50px', border: '1px solid', textDecoration: 'none' }}>Instagram</a>
+            <a href="https://www.instagram.com/sujavagishwari78voiceartist?utm_source=qr&igsh=MWtva2JuNTM5eGU3ag==" target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'var(--cream)', padding: '0.8rem 2.2rem', borderRadius: '50px', border: '1px solid', textDecoration: 'none' }}>Instagram</a>
           </div>
         </div>
       )}
@@ -89,11 +89,11 @@ export default function Footer() {
                  <Mail size={16} color="var(--gold)" style={{ flexShrink: 0, marginTop: '2px' }} />
                  <span style={{ fontSize: '0.75rem', wordBreak: 'break-all', lineHeight: 1.5 }}>sujavagishwari.voiceartist@gmail.com</span>
                </div>
-               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                 <Phone size={16} color="var(--gold)" />
-                 <span>+91 89391 79351</span>
-               </div>
-               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <a href="https://wa.me/918939179351" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', color: 'inherit' }}>
+                  <Phone size={16} color="var(--gold)" />
+                  <span>+91 89391 79351</span>
+                </a>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                  <MapPin size={16} color="var(--gold)" />
                  <span>Chennai, India</span>
                </div>

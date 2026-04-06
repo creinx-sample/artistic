@@ -50,10 +50,14 @@ export default function Contact() {
                   <div className="section-label" style={{ marginBottom: '1.2rem' }}>Email Me</div>
                   <div className="contact-card-value">sujavagishwari.voiceartist@gmail.com</div>
                 </div>
-                <div className="contact-glass-card" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '180px' }}>
+                <a href="https://wa.me/918939179351" target="_blank" rel="noopener noreferrer" className="contact-glass-card" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '180px', textDecoration: 'none' }}>
                   <div className="section-label" style={{ marginBottom: '1.2rem' }}>Call / WhatsApp</div>
                   <div className="contact-card-value">+91 89391 79351</div>
-                </div>
+                </a>
+                <a href="https://www.instagram.com/sujavagishwari78voiceartist?utm_source=qr&igsh=MWtva2JuNTM5eGU3ag==" target="_blank" rel="noopener noreferrer" className="contact-glass-card" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '180px', textDecoration: 'none' }}>
+                  <div className="section-label" style={{ marginBottom: '1.2rem' }}>Instagram</div>
+                  <div className="contact-card-value">@sujavagishwari78voiceartist</div>
+                </a>
                 <div className="contact-glass-card" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '180px' }}>
                   <div className="section-label" style={{ marginBottom: '1.2rem' }}>Location</div>
                   <div className="contact-card-value">Chennai, Tamil Nadu</div>

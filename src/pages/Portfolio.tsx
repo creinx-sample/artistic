@@ -128,7 +128,7 @@ export default function Portfolio({ setTrack }: { setTrack: (track: any) => void
           </p>
         </div>
       </section>
-      <div style={{ height: '10rem' }}></div>
+      <div style={{ height: '3rem' }}></div>
     </div>
   );
 }

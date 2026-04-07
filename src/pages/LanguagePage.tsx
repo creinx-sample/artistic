@@ -90,7 +90,7 @@ export default function LanguagePage({ language, description, setTrack }: Langua
           </Link>
         </div>
       </section>
-      <div style={{ height: '10rem' }}></div>
+      <div style={{ height: '3rem' }}></div>
     </div>
   );
 }

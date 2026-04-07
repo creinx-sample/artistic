@@ -708,3 +708,15 @@ footer{background:linear-gradient(to bottom, #061312, #040c0b); position:relativ
   to   { width: 100%; }
 }
 
+/* ── MOBILE TWEAKS ── */
+@media (max-width: 768px) {
+  .hero-title { line-height: 1.0 !important; margin-bottom: 2rem !important; }
+  .audiobook-hero { padding: 4rem 5% !important; gap: 3rem !important; }
+  .footer-cta { padding: 4rem 5% !important; }
+  .whatsapp-floating { width: 50px !important; height: 50px !important; bottom: 20px !important; right: 20px !important; }
+}
+
+.whatsapp-floating:hover {
+  box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5) !important;
+  transform: translateY(-5px) scale(1.1) !important;
+}

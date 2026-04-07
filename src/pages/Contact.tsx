@@ -48,7 +48,7 @@ export default function Contact() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem', width: '100%' }}>
                 <div className="contact-glass-card" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '180px' }}>
                   <div className="section-label" style={{ marginBottom: '1.2rem' }}>Email Me</div>
-                  <div className="contact-card-value">sujavagishwari.voiceartist@gmail.com</div>
+                  <a href="mailto:sujavagishwari.voiceartist@gmail.com" className="contact-card-value" style={{ textDecoration: 'none', color: 'inherit' }}>sujavagishwari.voiceartist@gmail.com</a>
                 </div>
                 <a href="https://wa.me/918939179351" target="_blank" rel="noopener noreferrer" className="contact-glass-card" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '180px', textDecoration: 'none' }}>
                   <div className="section-label" style={{ marginBottom: '1.2rem' }}>Call / WhatsApp</div>

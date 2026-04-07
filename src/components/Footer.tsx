@@ -21,7 +21,7 @@ export default function Footer() {
     <footer style={{ background: 'var(--dark)', position: 'relative', zIndex: 2, paddingBottom: '2rem' }}>
       {/* Ready to Collaborate CTA */}
       {!isContactPage && (
-        <div className="footer-cta" style={{ padding: '8rem 5%', borderTop: '1px solid rgba(200,150,74,0.1)' }}>
+        <div className="footer-cta" style={{ padding: '4rem 5%', borderTop: '1px solid rgba(200,150,74,0.1)' }}>
           <div className="section-label" style={{ display: 'flex', justifyContent: 'center', color: 'var(--gold-pale)' }}>Get In Touch</div>
           <h2 className="section-title" style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Ready to <em>collaborate?</em></h2>
           <p style={{ opacity: 0.8, marginBottom: '2.5rem', maxWidth: '600px', margin: '0 auto 2.5rem', textAlign: 'center', color: 'var(--cream)' }}>Whether it's a feature film, a brand commercial, or an experimental podcast — I'd love to hear your vision.</p>
@@ -88,10 +88,10 @@ export default function Footer() {
           <div>
              <h4 style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--cream)', marginBottom: '1.5rem' }}>Location</h4>
              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', color: 'var(--cream)', opacity: 0.8, fontSize: '0.85rem' }}>
-               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-                 <Mail size={16} color="var(--gold)" style={{ flexShrink: 0, marginTop: '2px' }} />
-                 <span style={{ fontSize: '0.75rem', wordBreak: 'break-all', lineHeight: 1.5 }}>sujavagishwari.voiceartist@gmail.com</span>
-               </div>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <Mail size={16} color="var(--gold)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <a href="mailto:sujavagishwari.voiceartist@gmail.com" style={{ fontSize: '0.75rem', wordBreak: 'break-all', lineHeight: 1.5, color: 'inherit', textDecoration: 'none' }}>sujavagishwari.voiceartist@gmail.com</a>
+                </div>
                 <a href="https://wa.me/918939179351" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', color: 'inherit' }}>
                   <Phone size={16} color="var(--gold)" />
                   <span>+91 89391 79351</span>
@@ -108,9 +108,9 @@ export default function Footer() {
         {/* Absolute Centered Bottom Attribution */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '2rem' }}>
           <div className="dev-watermark" style={{ margin: 0, display: 'flex', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.5, marginRight: '10px', color: '#fff' }}>CRAFTED BY</span>
+            <span style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.5, marginRight: '10px', color: '#fff' }}>DESIGNED BY</span>
             <a href="https://www.creinx.com/" target="_blank" rel="noopener noreferrer" className="creinx-link">
-              Creinx
+              Crienx
               <div className="creinx-bars">
                 <div className="creinx-bar" style={{ animationDelay: '0s' }}></div>
                 <div className="creinx-bar" style={{ animationDelay: '0.2s' }}></div>

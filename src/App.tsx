@@ -100,6 +100,8 @@ function PageRoutes({ setTrack }: { setTrack: (track: any) => void }) {
   );
 }
 
+import WhatsAppFloating from './components/WhatsAppFloating';
+
 function App() {
   const [activeTrack, setActiveTrack] = useState<{ url: string; title: string; subtitle: string } | null>(null);
 
@@ -112,6 +114,7 @@ function App() {
         <main className="relative" style={{ zIndex: 1 }}>
           <PageRoutes setTrack={setActiveTrack} />
         </main>
+        <WhatsAppFloating />
         <Footer />
         <AudioPlayer track={activeTrack} onClose={() => setActiveTrack(null)} />
       </div>

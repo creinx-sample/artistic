@@ -610,9 +610,25 @@ footer{background:linear-gradient(to bottom, #061312, #040c0b); position:relativ
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6rem;
-  align-items: center;
+  align-items: flex-start;
   max-width: 1400px;
   margin: 0 auto;
+}
+
+.audiobook-info p {
+  text-align: justify;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+.audiobook-info {
+  padding-top: 4rem;
+}
+
+.audiobook-info p {
+  text-align: justify;
+  line-height: 1.8;
+  opacity: 0.9;
 }
 
 .audiobook-cover-wrap {
@@ -711,9 +727,10 @@ footer{background:linear-gradient(to bottom, #061312, #040c0b); position:relativ
 /* ── MOBILE TWEAKS ── */
 @media (max-width: 768px) {
   .hero-title { line-height: 1.0 !important; margin-bottom: 2rem !important; }
-  .audiobook-hero { padding: 4rem 5% !important; gap: 3rem !important; }
+  .audiobook-hero { padding: 4rem 5% !important; gap: 3rem !important; align-items: flex-start !important; }
   .footer-cta { padding: 4rem 5% !important; }
   .whatsapp-floating { width: 50px !important; height: 50px !important; bottom: 20px !important; right: 20px !important; }
+  .audiobook-info p { text-align: left !important; }
 }
 
 .whatsapp-floating:hover {

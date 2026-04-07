@@ -150,7 +150,7 @@ export default function AudiobookDetail({ setTrack }: { setTrack: (track: any) =
           </div>
         </div>
 
-        <div className="audiobook-info reveal d2" style={{ alignSelf: 'flex-start', paddingTop: '2rem' }}>
+        <div className="audiobook-info reveal d2" style={{ alignSelf: 'flex-start' }}>
           <div className="section-label">Production Detail</div>
           <h1>{work.title}</h1>
           

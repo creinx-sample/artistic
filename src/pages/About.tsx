@@ -91,7 +91,7 @@ export default function About() {
       {/* PROFESSIONAL SEPARATOR */}
       <div className="footer-cta" style={{ padding: '4rem 0', height: '120px' }}></div>
 
-      <section id="journey" className="reveal d2" style={{ padding: '0 5%', maxWidth: '1200px', margin: '0 auto 8rem' }}>
+      <section id="journey" className="reveal d2" style={{ padding: '0 5%', maxWidth: '1200px', margin: '0 auto 4rem' }}>
         <div className="section-label">Professional Evolution</div>
         <h2 className="section-title">Career <em>Milestones</em></h2>
         
@@ -151,14 +151,14 @@ export default function About() {
           </div>
         </div>
 
-        <div style={{ marginTop: '6rem', display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
+        <div style={{ marginTop: '3.5rem', display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
           <Link to="/portfolio" className="btn-primary">View Voice Portfolio</Link>
           <Link to="/contact" className="btn-outline">Contact Me</Link>
         </div>
       </section>
       
       {/* PROFESSIONAL TRANSITION SPACER */}
-      <div style={{ height: '10rem' }}></div>
+      <div style={{ height: '3rem' }}></div>
     </div>
   );
 }

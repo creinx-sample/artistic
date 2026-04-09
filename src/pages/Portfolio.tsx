@@ -18,6 +18,7 @@ export default function Portfolio({ setTrack }: { setTrack: (track: any) => void
     { value: 'Hindi', label: 'Hindi' },
     { value: 'Tamil', label: 'Tamil' },
     { value: 'Malayalam', label: 'Malayalam' },
+    { value: 'Jingles', label: 'Jingles' },
   ];
 
   const handleWorkClick = (work: Work) => {

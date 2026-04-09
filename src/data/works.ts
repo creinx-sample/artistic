@@ -13,7 +13,7 @@ export interface Work {
   title: string;
   description: string;
   filename: string;
-  language: 'Hindi' | 'English' | 'Tamil' | 'Malayalam';
+  language: 'Hindi' | 'English' | 'Tamil' | 'Malayalam' | 'Jingles';
   audio: string;
   duration?: string;
   year?: string;
@@ -240,6 +240,28 @@ export const works: Work[] = [
     filename: 'rj 01.malayalam.mp3',
     language: 'Malayalam',
     audio: '/audio/Malayalam/rj 01.malayalam.mp3',
+    year: '2024',
+    category: 'Voice Acting',
+  },
+
+  // Jingles
+  {
+    id: 'j1',
+    title: 'Brand Jingle 1',
+    description: 'Catchy and engaging jingle for brand identity.',
+    filename: 'AUD-20260409-WA0005.mp3',
+    language: 'Jingles',
+    audio: '/audio/Jingles/AUD-20260409-WA0005.mp3',
+    year: '2024',
+    category: 'Voice Acting',
+  },
+  {
+    id: 'j2',
+    title: 'Brand Jingle 2',
+    description: 'Professional commercial jingle production.',
+    filename: 'AUD-20260409-WA0006.mp3',
+    language: 'Jingles',
+    audio: '/audio/Jingles/AUD-20260409-WA0006.mp3',
     year: '2024',
     category: 'Voice Acting',
   },
